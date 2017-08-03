@@ -24,9 +24,10 @@ int main(int argc, char **argv)
 	test_count++;
 	memset (&test_case, 0, sizeof(test_case));
 	test_case.test_type = test_type;
-	test_case.tc_id = test_type;
-	rv = amvp_handle_test(&test_case);
-	printf("--------------------------------- TEST %2d ---------------------------------\n", test_case.test_type);
+	test_case.mt_id = test_count;
+	test_case.test_name = amvp_lookup_test_name(test_type);
+	rv = amvp_handle_test(NULL,&test_case);
+	printf("--------------------------------- TEST %s ---------------------------------\n", test_case.test_name);
 	printf(" return %d\n", rv);
 	if (rv != AMVP_SUCCESS) {
 	    sys_failed_count++;

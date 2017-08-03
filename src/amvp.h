@@ -116,6 +116,7 @@ typedef enum amvp_test {
     AMVP_TE09_27_01,
     AMVP_TE09_27_02,
     AMVP_TE09_31_01,
+    AMVP_TE09_33_01,
     AMVP_TE09_35_04,
     AMVP_TE09_35_05,
     AMVP_TEST_END
@@ -131,6 +132,8 @@ typedef enum amvp_test_response {
 
 typedef struct amvp_tc_t AMVP_TEST_CASE;
 typedef void (*AMVP_CLEANUP_FUNC)(AMVP_TEST_CASE *tc);
+typedef AMVP_RESULT (*AMVP_TEST_HANDLER_CALLBACK)(AMVP_CTX *ctx, 
+                                                  AMVP_TEST_CASE *test_case);
 
 /*
  * This struct holds data that represents a single test case .
@@ -146,7 +149,8 @@ typedef void (*AMVP_CLEANUP_FUNC)(AMVP_TEST_CASE *tc);
 #define AMVP_MAX_LOG_COUNT 3
 struct amvp_tc_t {
     AMVP_TEST       test_type;
-    unsigned int    tc_id;    /* Test case id */
+    const char      *test_name;
+    unsigned int    mt_id;    /* Test case id */
     AMVP_TEST_RESPONSE test_response;
     unsigned int    log_count;
     const char      *log[AMVP_MAX_LOG_COUNT];
@@ -160,7 +164,7 @@ enum amvp_result {
     AMVP_NO_CTX,
     AMVP_TRANSPORT_FAIL,
     AMVP_JSON_ERR,
-    AMVP_UNSUPPORTED_OP,
+    AMVP_UNSUPPORTED_TEST,
     AMVP_CLEANUP_FAIL,
     AMVP_KAT_DOWNLOAD_RETRY,
     AMVP_INVALID_ARG,
@@ -171,6 +175,9 @@ enum amvp_result {
     AMVP_DATA_TOO_LARGE,
     AMVP_DUP_CIPHER,
     AMVP_RESULT_MAX,
+    AMVP_DBG_ERR,
+    AMVP_DBG_PARSE_ERR,
+    AMVP_DBG_UNKNOWN_BREAKPOINT,
     AMVP_RESOURCE_FAIL
 };
 
@@ -350,6 +357,20 @@ AMVP_RESULT amvp_set_module_info(AMVP_CTX *ctx,
 
 AMVP_RESULT amvp_check_test_results(AMVP_CTX *ctx);
 void amvp_cleanup(void);
+
+const char * amvp_lookup_test_name(AMVP_TEST test_type);
+AMVP_TEST amvp_lookup_test_type(const char *test_name);
+
+
+/*
+ * This particular test has not been implemented by your module yet
+ */
+AMVP_RESULT amvp_not_implemented(AMVP_TEST_CASE *tc);
+
+/*
+ * This particular test has not apply to your module 
+ */
+AMVP_RESULT amvp_does_not_apply(AMVP_TEST_CASE *tc, const char *info);
 
 #ifdef __cplusplus
 }

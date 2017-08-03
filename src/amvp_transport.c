@@ -290,6 +290,8 @@ printf("amvp_post: url=%s\n", url);
     return (http_code);
 }
 
+#define AMVP_BUF_MAX 4096
+
 /*
  * This is a callback used by curl to send the HTTP body
  * to the application (us).  We will store the HTTP body
@@ -306,7 +308,7 @@ static size_t amvp_curl_write_upld_func(void *ptr, size_t size, size_t nmemb, vo
     }
 
     if (!ctx->upld_buf) {
-        ctx->upld_buf = calloc(1, AMVP_KAT_BUF_MAX);
+        ctx->upld_buf = calloc(1, AMVP_BUF_MAX);
         if (!ctx->upld_buf) {
             fprintf(stderr, "\nmalloc failed in curl write upld func\n");
             return 0;
@@ -314,7 +316,7 @@ static size_t amvp_curl_write_upld_func(void *ptr, size_t size, size_t nmemb, vo
     }
     http_buf = ctx->upld_buf;
 
-    if ((ctx->read_ctr + nmemb) > AMVP_KAT_BUF_MAX) {
+    if ((ctx->read_ctr + nmemb) > AMVP_BUF_MAX) {
         fprintf(stderr, "\nKAT is too large\n");
         return 0;
     }
@@ -327,6 +329,7 @@ static size_t amvp_curl_write_upld_func(void *ptr, size_t size, size_t nmemb, vo
 }
 
 
+#ifdef notdef
 /*
  * This is a callback used by curl to send the HTTP body
  * to the application (us).  We will store the HTTP body
@@ -362,6 +365,7 @@ static size_t amvp_curl_write_kat_func(void *ptr, size_t size, size_t nmemb, voi
 
     return nmemb;
 }
+#endif
 
 /*
  * This is a callback used by curl to send the HTTP body
@@ -430,93 +434,6 @@ AMVP_RESULT amvp_send_register(AMVP_CTX *ctx, char *reg)
     return AMVP_SUCCESS;
 }
 
-/*
- * This is the top level function used within libamvp to retrieve
- * a KAT vector set from the AMVP server.
- */
-AMVP_RESULT amvp_retrieve_vector_set(AMVP_CTX *ctx, int vs_id)
-{
-    int rv;
-    char url[512]; //TODO: 512 is an arbitrary limit
 
-    memset(url, 0x0, 512);
-    snprintf(url, 511, "https://%s:%d/%svalidation/amvp/vectors?vsId=%d", ctx->server_name, ctx->server_port, ctx->path_segment, vs_id);
-
-    if (ctx->kat_buf) {
-        memset(ctx->kat_buf, 0x0, AMVP_KAT_BUF_MAX);
-    }
-    rv = amvp_curl_http_get(ctx, url, &amvp_curl_write_kat_func);
-    if (rv != HTTP_OK) {
-        amvp_log_msg(ctx, "Unable to get vectors from server. curl rv=%d\n", rv);
-	amvp_log_msg(ctx, "%s\n", ctx->kat_buf);
-        return AMVP_TRANSPORT_FAIL;
-    }
-
-    /*
-     * Update user with status
-     */
-    amvp_log_msg(ctx,"Successfully retrieved KAT vector set");
-
-    return AMVP_SUCCESS;
-}
-
-
-/*
- * This function is used to submit a vector set response
- * to the ACV server.
- */
-AMVP_RESULT amvp_submit_vector_responses(AMVP_CTX *ctx)
-{
-    int rv;
-    char url[512]; //TODO: 512 is an arbitrary limit
-    char *resp;
-
-    memset(url, 0x0, 512);
-    snprintf(url, 511, "https://%s:%d/%svalidation/amvp/vectors?vsId=%d", ctx->server_name, ctx->server_port, ctx->path_segment, ctx->vs_id);
-
-    resp = json_serialize_to_string_pretty(ctx->kat_resp);
-    rv = amvp_curl_http_post(ctx, url, resp, &amvp_curl_write_upld_func);
-    json_value_free(ctx->kat_resp);
-    ctx->kat_resp = NULL;
-    json_free_serialized_string(resp);
-    if (rv != HTTP_OK) {
-        amvp_log_msg(ctx, "Unable to upload vector set to AMVP server. curl rv=%d\n", rv);
-	amvp_log_msg(ctx, "%s\n", ctx->upld_buf);
-        return AMVP_TRANSPORT_FAIL;
-    }
-
-    amvp_log_msg(ctx, "Successfully submitted KAT vector responses");
-    return AMVP_SUCCESS;
-}
-
-/*
- * This is the top level function used within libamvp to retrieve
- * the test result for a given KAT vector set from the AMVP server.
- */
-AMVP_RESULT amvp_retrieve_vector_set_result(AMVP_CTX *ctx, int vs_id)
-{
-    int rv;
-    char url[512]; //TODO: 512 is an arbitrary limit
-
-    memset(url, 0x0, 512);
-    snprintf(url, 511, "https://%s:%d/%svalidation/amvp/results?vsId=%d", ctx->server_name, ctx->server_port, ctx->path_segment, vs_id);
-
-    if (ctx->kat_buf) {
-        memset(ctx->kat_buf, 0x0, AMVP_KAT_BUF_MAX);
-    }
-    rv = amvp_curl_http_get(ctx, url, &amvp_curl_write_kat_func);
-    if (rv != HTTP_OK) {
-        amvp_log_msg(ctx, "Unable to get vector result from server. curl rv=%d\n", rv);
-	amvp_log_msg(ctx, "%s\n", ctx->kat_buf);
-        return AMVP_TRANSPORT_FAIL;
-    }
-
-    /*
-     * Update user with status
-     */
-    amvp_log_msg(ctx,"Successfully retrieved KAT vector set response");
-
-    return AMVP_SUCCESS;
-}
 
 

@@ -34,7 +34,6 @@
 #include <curl/curl.h>
 #endif
 
-extern AMVP_ALG_HANDLER alg_tbl[];
 static int amvp_char_to_int(char ch);
 
 /*
@@ -69,6 +68,7 @@ void amvp_cleanup(void)
     curl_global_cleanup();
 }
 
+#ifdef notdef
 /*
  * This function is used to locate the callback function that's needed
  * when a particular crypto operation is needed by libamvp.
@@ -90,40 +90,7 @@ AMVP_CAPS_LIST* amvp_locate_cap_entry(AMVP_CTX *ctx, AMVP_CIPHER cipher)
     }
     return NULL;
 }
-
-/*
- * This function returns the name of an algorithm given
- * a AMVP_CIPHER value.  It looks for the cipher in
- * the master algorithm table, returns NULL if none match.
- */
-char * amvp_lookup_test_name(AMVP_TEST teest_type)
-{
-    int i;
-
-    for (i = 0; i < AMVP_TEST_MAX; i++) {
-        if (alg_tbl[i].test_type == test_type) {
-            return alg_tbl[i].name;
-        }
-    }
-    return NULL;
-}
-
-/*
- * This function returns the ID of a cipher given an
- * algorithm name (as defined in the AMVP spec).  It
- * returns -1 if none match.
- */
-AMVP_TEST amvp_lookup_test_index(const char *test_name)
-{
-    int i;
-
-    for (i = 0; i < AMVP_TEST_MAX; i++) {
-        if (!strncmp(test_name, alg_tbl[i].name, strlen(alg_tbl[i].name))) {
-            return alg_tbl[i].test_type;
-        }
-    }
-    return -1;
-}
+#endif
 
 
 //TODO: the next 3 functions could possibly be replaced using OpenSSL bignum,
@@ -195,7 +162,7 @@ AMVP_RESULT amvp_hexstr_to_bin(const unsigned char *src, unsigned char *dest, in
             src += 2;
         }
     } else {
-        return AMVP_UNSUPPORTED_OP;
+        return AMVP_UNSUPPORTED_TEST;
     }
 
     return AMVP_SUCCESS;

@@ -6,6 +6,6 @@
 #define app_lcl_h 1
 
 #define PK11MODE "pk11mode"
-AMVP_RESULT amvp_handle_test(AMVP_TEST_CASE *tc);
+AMVP_RESULT amvp_handle_test(AMVP_CTX *, AMVP_TEST_CASE *tc);
 
 #endif

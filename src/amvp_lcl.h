@@ -30,27 +30,25 @@
 
 #define AMVP_VERSION    "0.3"
 
-#define AMVP_ALG_MAX 34  /* Used by alg_tbl[] */
-
-#define AVMP_TEST_TE01_03_02 "TE01.03.02"
-#define AVMP_TEST_TE01_04_02 "TE01.04.02"
-#define AVMP_TEST_TE02_06_02 "TE02.06.02"
-#define AVMP_TEST_TE02_06_04 "TE02.06.04"
-#define AVMP_TEST_TE02_13_03 "TE02.13.03"
-#define AVMP_TEST_TE02_14_02 "TE02.14.02"
-#define AVMP_TEST_TE03_02_02 "TE03.02.02"
-#define AVMP_TEST_TE03_11_02 "TE03.11.02"
-#define AVMP_TEST_TE03_11_03 "TE03.11.03"
-#define AVMP_TEST_TE03_03_02 "TE03.03.02"
-#define AVMP_TEST_TE03_14_02 "TE03.14.02"
-#define AVMP_TEST_TE03_15_02 "TE03.15.02"
-#define AVMP_TEST_TE03_17_02 "TE03.17.02"
-#define AVMP_TEST_TE03_18_02 "TE03.18.02"
-#define AVMP_TEST_TE03_21_02 "TE03.21.02"
-#define AVMP_TEST_TE03_22_02 "TE03.22.02"
-#define AVMP_TEST_TE03_23_02 "TE03.23.02"
-#define AVMP_TEST_TE03_24_02 "TE03.24.02"
-#define AVMP_TEST_TE04_03_01 "TE04.03.01"
+#define AMVP_TEST_TE01_03_02 "TE01.03.02"
+#define AMVP_TEST_TE01_04_02 "TE01.04.02"
+#define AMVP_TEST_TE02_06_02 "TE02.06.02"
+#define AMVP_TEST_TE02_06_04 "TE02.06.04"
+#define AMVP_TEST_TE02_13_03 "TE02.13.03"
+#define AMVP_TEST_TE02_14_02 "TE02.14.02"
+#define AMVP_TEST_TE03_02_02 "TE03.02.02"
+#define AMVP_TEST_TE03_11_02 "TE03.11.02"
+#define AMVP_TEST_TE03_11_03 "TE03.11.03"
+#define AMVP_TEST_TE03_03_02 "TE03.03.02"
+#define AMVP_TEST_TE03_14_02 "TE03.14.02"
+#define AMVP_TEST_TE03_15_02 "TE03.15.02"
+#define AMVP_TEST_TE03_17_02 "TE03.17.02"
+#define AMVP_TEST_TE03_18_02 "TE03.18.02"
+#define AMVP_TEST_TE03_21_02 "TE03.21.02"
+#define AMVP_TEST_TE03_22_02 "TE03.22.02"
+#define AMVP_TEST_TE03_23_02 "TE03.23.02"
+#define AMVP_TEST_TE03_24_02 "TE03.24.02"
+#define AMVP_TEST_TE04_03_01 "TE04.03.01"
 #define AMVP_TEST_TE04_05_08 "TE04.05.08"
 #define AMVP_TEST_TE07_01_02 "TE07.01.02"
 #define AMVP_TEST_TE07_02_02 "TE07.02.02"
@@ -79,6 +77,7 @@
 #define AMVP_TEST_TE09_27_01 "TE09.27.01"
 #define AMVP_TEST_TE09_27_02 "TE09.27.02"
 #define AMVP_TEST_TE09_31_01 "TE09.31.01"
+#define AMVP_TEST_TE09_33_01 "TE09.33.01"
 #define AMVP_TEST_TE09_35_04 "TE09.35.04"
 #define AMVP_TEST_TE09_35_05 "TE09.35.05"
 
@@ -92,18 +91,18 @@
 #define AMVP_PATH_SEGMENT_DEFAULT ""
 
 
-typedef struct amvp_alg_handler_t AMVP_ALG_HANDLER;
+typedef struct amvp_module_test_handler_t AMVP_MODULE_TEST_HANDLER;
 
-struct amvp_alg_handler_t {
-    AMVP_TEST            testr;
-    AMVP_RESULT (*handler)(AMVP_CTX *ctx, JSON_Object *obj);
-    char		   *name;
+struct amvp_module_test_handler_t {
+    AMVP_TEST            test_type;
+    const char		 *name;
+    AMVP_TEST_HANDLER_CALLBACK  test_handler;
 };
 
-typedef struct amvp_vs_list_t {
-    int vs_id;
-    struct amvp_vs_list_t   *next;
-} ACMP_VS_LIST;
+typedef struct amvp_mt_list_t {
+    AMVP_TEST_CASE test_case;
+    struct amvp_mt_list_t   *next;
+} AMVP_MT_LIST;
 
 /*
  * Supported length list
@@ -221,7 +220,7 @@ struct amvp_ctx_t {
     char	*module_desc;
 
     /* test session data */
-    AMVP_VS_LIST    *vs_list;
+    AMVP_MT_LIST    *mt_list;
     char            *jwt_token; /* access_token provided by server for authenticating REST calls */
 
     /* crypto module capabilities list */
@@ -232,11 +231,10 @@ struct amvp_ctx_t {
 
     /* Transitory values */
     char        *reg_buf;    /* holds the JSON registration response */
-    char        *kat_buf;    /* holds the current set of vectors being processed */
     char        *upld_buf;   /* holds the HTTP response from server when uploading results */
-    JSON_Value      *kat_resp;   /* holds the current set of vector responses */
     int read_ctr;            /* used during curl processing */
-    int vs_id;               /* vs_id currently being processed */
+    int mt_id;               /* vs_id currently being processed */
+    AMVP_TEST_HANDLER_CALLBACK default_test_handler;
 };
 
 AMVP_RESULT amvp_send_register(AMVP_CTX *ctx, char *reg);

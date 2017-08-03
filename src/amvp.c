@@ -37,80 +37,116 @@
  * Forward prototypes for local functions
  */
 static AMVP_RESULT amvp_parse_register(AMVP_CTX *ctx);
-static AMVP_RESULT amvp_process_vsid(AMVP_CTX *ctx, int vs_id);
-static AMVP_RESULT amvp_process_vector_set(AMVP_CTX *ctx, JSON_Object *obj);
-static AMVP_RESULT amvp_dispatch_vector_set(AMVP_CTX *ctx, JSON_Object *obj);
-static AMVP_RESULT amvp_set_test_handler(
-    AMVP_CTX *ctx,
-    AMVP_TEST test_type,
-    AMVP_RESULT (*test_handler)(AMVP_TEST_CASE *test_case));
-static void amvp_cap_free_sl(AMVP_SL_LIST *list);
-static AMVP_RESULT amvp_get_result_vsid(AMVP_CTX *ctx, int vs_id);
-
+static AMVP_RESULT amvp_process_module_test(AMVP_CTX *ctx, AMVP_TEST_CASE *tc);
+/*static AMVP_RESULT amvp_process_vector_set(AMVP_CTX *ctx, JSON_Object *obj);
+static AMVP_RESULT amvp_dispatch_vector_set(AMVP_CTX *ctx, JSON_Object *obj); */
+static AMVP_RESULT amvp_get_result_mtid(AMVP_CTX *ctx, AMVP_TEST_CASE *tc); 
 
 /*
- * This table maps AMVP operations to handlers within libamvp.
- * Each AMVP operation may have unique parameters.  For instance,
- * the parameters to test RSA are different than AES.  Therefore,
- * we allow for a unique handler to be registered for each
- * AMVP operation.
- *
- * WARNING:
- * This table is not sparse, it must contain AMVP_OP_MAX entries.
+ * This table maps AMVP operations to strings,
  */
-AMVP_TEST_HANDLER alg_tbl[AMVP_ALG_MAX] = {
-    {AMVP_TE01_03_02,	TE01_03_02amvp_test_handler,	AMVP_TEST_TE01_03_02},
-    {AMVP_TE01_04_02,	TE01_04_02amvp_test_handler,	AMVP_TEST_TE01_04_02},
-    {AMVP_TE02_06_02,	TE02_06_02amvp_test_handler,	AMVP_TEST_TE02_06_02},
-    {AMVP_TE02_06_04,	TE02_06_04amvp_test_handler,	AMVP_TEST_TE02_06_04},
-    {AMVP_TE02_13_03,	TE02_13_03amvp_test_handler,	AMVP_TEST_TE02_13_03},
-    {AMVP_TE02_14_02,	TE02_14_02amvp_test_handler,	AMVP_TEST_TE02_14_02},
-    {AMVP_TE03_02_02,	TE03_02_02amvp_test_handler,	AMVP_TEST_TE03_02_02},
-    {AMVP_TE03_11_02,	TE03_11_02amvp_test_handler,	AMVP_TEST_TE03_11_02},
-    {AMVP_TE03_11_03,	TE03_11_03amvp_test_handler,	AMVP_TEST_TE03_11_03},
-    {AMVP_TE03_03_02,	TE03_03_02amvp_test_handler,	AMVP_TEST_TE03_03_02},
-    {AMVP_TE03_14_02,	TE03_14_02amvp_test_handler,	AMVP_TEST_TE03_14_02},
-    {AMVP_TE03_15_02,	TE03_15_02amvp_test_handler,	AMVP_TEST_TE03_15_02},
-    {AMVP_TE03_17_02,	TE03_17_02amvp_test_handler,	AMVP_TEST_TE03_17_02},
-    {AMVP_TE03_18_02,	TE03_18_02amvp_test_handler,	AMVP_TEST_TE03_18_02},
-    {AMVP_TE03_21_02,	TE03_21_02amvp_test_handler,	AMVP_TEST_TE03_21_02},
-    {AMVP_TE03_22_02,	TE03_22_02amvp_test_handler,	AMVP_TEST_TE03_22_02},
-    {AMVP_TE03_23_02,	TE03_23_02amvp_test_handler,	AMVP_TEST_TE03_23_02},
-    {AMVP_TE03_24_02,	TE03_24_02amvp_test_handler,	AMVP_TEST_TE03_24_02},
-    {AMVP_TE04_03_01,	TE04_03_01amvp_test_handler,	AMVP_TEST_TE04_03_01},
-    {AMVP_TE04_05_08,	TE04_05_08amvp_test_handler,	AMVP_TEST_TE04_05_08},
-    {AMVP_TE07_01_02,	TE07_01_02amvp_test_handler,	AMVP_TEST_TE07_01_02},
-    {AMVP_TE07_02_02,	TE07_02_02amvp_test_handler,	AMVP_TEST_TE07_02_02},
-    {AMVP_TE07_15_02,	TE07_15_02amvp_test_handler,	AMVP_TEST_TE07_15_02},
-    {AMVP_TE07_15_03,	TE07_15_03amvp_test_handler,	AMVP_TEST_TE07_15_03},
-    {AMVP_TE07_15_04,	TE07_15_04amvp_test_handler,	AMVP_TEST_TE07_15_04},
-    {AMVP_TE07_23_03,	TE07_23_03amvp_test_handler,	AMVP_TEST_TE07_23_03},
-    {AMVP_TE07_25_02,	TE07_25_02amvp_test_handler,	AMVP_TEST_TE07_25_02},
-    {AMVP_TE07_27_02,	TE07_27_02amvp_test_handler,	AMVP_TEST_TE07_27_02},
-    {AMVP_TE07_29_02,	TE07_29_02amvp_test_handler,	AMVP_TEST_TE07_29_02},
-    {AMVP_TE07_32_02,	TE07_32_02amvp_test_handler,	AMVP_TEST_TE07_32_02},
-    {AMVP_TE07_39_02,	TE07_39_02amvp_test_handler,	AMVP_TEST_TE07_39_02},
-    {AMVP_TE07_41_02,	TE07_41_02amvp_test_handler,	AMVP_TEST_TE07_41_02},
-    {AMVP_TE09_04_03,	TE09_04_03amvp_test_handler,	AMVP_TEST_TE09_04_03},
-    {AMVP_TE09_05_03,	TE09_05_03amvp_test_handler,	AMVP_TEST_TE09_05_03},
-    {AMVP_TE09_06_02,	TE09_06_02amvp_test_handler,	AMVP_TEST_TE09_06_02},
-    {AMVP_TE09_07_03,	TE09_07_03amvp_test_handler,	AMVP_TEST_TE09_07_03},
-    {AMVP_TE09_09_02,	TE09_09_02amvp_test_handler,	AMVP_TEST_TE09_09_02},
-    {AMVP_TE09_10_02,	TE09_10_02amvp_test_handler,	AMVP_TEST_TE09_10_02},
-    {AMVP_TE09_12_02,	TE09_12_02amvp_test_handler,	AMVP_TEST_TE09_12_02},
-    {AMVP_TE09_16_01,	TE09_16_01amvp_test_handler,	AMVP_TEST_TE09_16_01},
-    {AMVP_TE09_16_02,	TE09_16_02amvp_test_handler,	AMVP_TEST_TE09_16_02},
-    {AMVP_TE09_19_03,	TE09_19_03amvp_test_handler,	AMVP_TEST_TE09_19_03},
-    {AMVP_TE09_22_07,	TE09_22_07amvp_test_handler,	AMVP_TEST_TE09_22_07},
-    {AMVP_TE09_24_01,	TE09_24_01amvp_test_handler,	AMVP_TEST_TE09_24_01},
-    {AMVP_TE09_27_01,	TE09_27_01amvp_test_handler,	AMVP_TEST_TE09_27_01},
-    {AMVP_TE09_27_02,	TE09_27_02amvp_test_handler,	AMVP_TEST_TE09_27_02},
-    {AMVP_TE09_31_01,	TE09_31_01amvp_test_handler,	AMVP_TEST_TE09_31_01},
-    {AMVP_TE09_35_04,	TE09_35_04amvp_test_handler,	AMVP_TEST_TE09_35_04},
-    {AMVP_TE09_35_05,	TE09_35_05amvp_test_handler,	AMVP_TEST_TE09_35_05}
+AMVP_MODULE_TEST_HANDLER module_test_tbl[] = {
+    {AMVP_TE01_03_02,	AMVP_TEST_TE01_03_02, NULL},
+    {AMVP_TE01_04_02,	AMVP_TEST_TE01_04_02, NULL},
+    {AMVP_TE02_06_02,	AMVP_TEST_TE02_06_02, NULL},
+    {AMVP_TE02_06_04,	AMVP_TEST_TE02_06_04, NULL},
+    {AMVP_TE02_13_03,	AMVP_TEST_TE02_13_03, NULL},
+    {AMVP_TE02_14_02,	AMVP_TEST_TE02_14_02, NULL},
+    {AMVP_TE03_02_02,	AMVP_TEST_TE03_02_02, NULL},
+    {AMVP_TE03_11_02,	AMVP_TEST_TE03_11_02, NULL},
+    {AMVP_TE03_11_03,	AMVP_TEST_TE03_11_03, NULL},
+    {AMVP_TE03_03_02,	AMVP_TEST_TE03_03_02, NULL},
+    {AMVP_TE03_14_02,	AMVP_TEST_TE03_14_02, NULL},
+    {AMVP_TE03_15_02,	AMVP_TEST_TE03_15_02, NULL},
+    {AMVP_TE03_17_02,	AMVP_TEST_TE03_17_02, NULL},
+    {AMVP_TE03_18_02,	AMVP_TEST_TE03_18_02, NULL},
+    {AMVP_TE03_21_02,	AMVP_TEST_TE03_21_02, NULL},
+    {AMVP_TE03_22_02,	AMVP_TEST_TE03_22_02, NULL},
+    {AMVP_TE03_23_02,	AMVP_TEST_TE03_23_02, NULL},
+    {AMVP_TE03_24_02,	AMVP_TEST_TE03_24_02, NULL},
+    {AMVP_TE04_03_01,	AMVP_TEST_TE04_03_01, NULL},
+    {AMVP_TE04_05_08,	AMVP_TEST_TE04_05_08, NULL},
+    {AMVP_TE07_01_02,	AMVP_TEST_TE07_01_02, NULL},
+    {AMVP_TE07_02_02,	AMVP_TEST_TE07_02_02, NULL},
+    {AMVP_TE07_15_02,	AMVP_TEST_TE07_15_02, NULL},
+    {AMVP_TE07_15_03,	AMVP_TEST_TE07_15_03, NULL},
+    {AMVP_TE07_15_04,	AMVP_TEST_TE07_15_04, NULL},
+    {AMVP_TE07_23_03,	AMVP_TEST_TE07_23_03, NULL},
+    {AMVP_TE07_25_02,	AMVP_TEST_TE07_25_02, NULL},
+    {AMVP_TE07_27_02,	AMVP_TEST_TE07_27_02, NULL},
+    {AMVP_TE07_29_02,	AMVP_TEST_TE07_29_02, NULL},
+    {AMVP_TE07_32_02,	AMVP_TEST_TE07_32_02, NULL},
+    {AMVP_TE07_39_02,	AMVP_TEST_TE07_39_02, NULL},
+    {AMVP_TE07_41_02,	AMVP_TEST_TE07_41_02, NULL},
+    {AMVP_TE09_04_03,	AMVP_TEST_TE09_04_03, NULL},
+    {AMVP_TE09_05_03,	AMVP_TEST_TE09_05_03, NULL},
+    {AMVP_TE09_06_02,	AMVP_TEST_TE09_06_02, NULL},
+    {AMVP_TE09_07_03,	AMVP_TEST_TE09_07_03, NULL},
+    {AMVP_TE09_09_02,	AMVP_TEST_TE09_09_02, NULL},
+    {AMVP_TE09_10_02,	AMVP_TEST_TE09_10_02, NULL},
+    {AMVP_TE09_12_02,	AMVP_TEST_TE09_12_02, NULL},
+    {AMVP_TE09_16_01,	AMVP_TEST_TE09_16_01, NULL},
+    {AMVP_TE09_16_02,	AMVP_TEST_TE09_16_02, NULL},
+    {AMVP_TE09_19_03,	AMVP_TEST_TE09_19_03, NULL},
+    {AMVP_TE09_22_07,	AMVP_TEST_TE09_22_07, NULL},
+    {AMVP_TE09_24_01,	AMVP_TEST_TE09_24_01, NULL},
+    {AMVP_TE09_27_01,	AMVP_TEST_TE09_27_01, NULL},
+    {AMVP_TE09_27_02,	AMVP_TEST_TE09_27_02, NULL},
+    {AMVP_TE09_31_01,	AMVP_TEST_TE09_31_01, NULL},
+    {AMVP_TE09_33_01,	AMVP_TEST_TE09_33_01, NULL},
+    {AMVP_TE09_35_04,	AMVP_TEST_TE09_35_04, NULL},
+    {AMVP_TE09_35_05,	AMVP_TEST_TE09_35_05, NULL}
 };
 
+const int AMVP_MODULE_TEST_MAX = 
+		sizeof(module_test_tbl)/sizeof(module_test_tbl[0]);
 
+static AMVP_MODULE_TEST_HANDLER *
+amvp_find_module_test(const char *test_name) 
+{
+    int i;
+    for (i = 0; i < AMVP_MODULE_TEST_MAX; i++) {
+        if (!strncmp(test_name, module_test_tbl[i].name, 
+				strlen(module_test_tbl[i].name))) {
+	    return &module_test_tbl[i]; 
+        }
+    }
+    return NULL;
+}
+
+static AMVP_MODULE_TEST_HANDLER *
+amvp_find_module_test_by_type(AMVP_TEST test_type)
+{
+    int i;
+    for (i = 0; i < AMVP_MODULE_TEST_MAX; i++) {
+        if (module_test_tbl[i].test_type == test_type)  {
+	    return &module_test_tbl[i]; 
+        }
+    }
+    return NULL;
+}
+
+const char *
+amvp_lookup_test_name(AMVP_TEST test_type)
+{
+  AMVP_MODULE_TEST_HANDLER *mth =amvp_find_module_test_by_type(test_type);
+
+  if (mth) {
+    return mth->name;
+  }
+  return NULL;
+}
+
+AMVP_TEST
+amvp_lookup_test_type(const char *test_name)
+{
+  AMVP_MODULE_TEST_HANDLER *mth =amvp_find_module_test(test_name);
+  if (mth) {
+    return mth->test_type;
+  }
+  return (AMVP_TEST) -1;
+}
+  
 
 /*
  * This is the first function the user should invoke to allocate
@@ -139,14 +175,12 @@ AMVP_RESULT amvp_create_test_session(AMVP_CTX **ctx,
  */
 AMVP_RESULT amvp_free_test_session(AMVP_CTX *ctx)
 {
-    AMVP_VS_LIST *vs_entry, *vs_e2;
-    AMVP_CAPS_LIST *cap_entry, *cap_e2;
+    AMVP_MT_LIST *mt_entry, *mt_e2;
+    /*AMVP_CAPS_LIST *cap_entry, *cap_e2; */
 
     if (ctx) {
         if (ctx->reg_buf) free(ctx->reg_buf);
-        if (ctx->kat_buf) free(ctx->kat_buf);
         if (ctx->upld_buf) free(ctx->upld_buf);
-        if (ctx->kat_resp) json_value_free(ctx->kat_resp);
         if (ctx->server_name) free(ctx->server_name);
         if (ctx->vendor_name) free(ctx->vendor_name);
         if (ctx->vendor_url) free(ctx->vendor_url);
@@ -160,14 +194,15 @@ AMVP_RESULT amvp_free_test_session(AMVP_CTX *ctx)
         if (ctx->cacerts_file) free(ctx->cacerts_file);
         if (ctx->tls_cert) free(ctx->tls_cert);
         if (ctx->tls_key) free(ctx->tls_key);
-        if (ctx->vs_list) {
-            vs_entry = ctx->vs_list;
-            while (vs_entry) {
-                vs_e2 = vs_entry->next;
-                free(vs_entry);
-                vs_entry = vs_e2;
+        if (ctx->mt_list) {
+            mt_entry = ctx->mt_list;
+            while (mt_entry) {
+                mt_e2 = mt_entry->next;
+                free(mt_entry);
+                mt_entry = mt_e2;
             }
         }
+#ifdef notdef
         if (ctx->caps_list) {
             cap_entry = ctx->caps_list;
             while (cap_entry) {
@@ -196,99 +231,70 @@ AMVP_RESULT amvp_free_test_session(AMVP_CTX *ctx)
                 }
             }
         }
+#endif
         if (ctx->jwt_token) free(ctx->jwt_token);
         free(ctx);
     }
     return AMVP_SUCCESS;
 }
 
-/*
- * Adds the length provided to the linked list of
- * supported lengths.
- */
-static AMVP_RESULT amvp_cap_add_length(AMVP_SL_LIST **list, int len)
-{
-    AMVP_SL_LIST *l = *list;
-    AMVP_SL_LIST *new;
-
-    /*
-     * Allocate some space for the new entry
-     */
-    new = calloc(1, sizeof(AMVP_SL_LIST));
-    if (!new) {
-	return AMVP_MALLOC_FAIL;
-    }
-    new->length = len;
-
-    /*
-     * See if we need to create the list first
-     */
-    if (!l) {
-	*list = new;
-    } else {
-	/*
-	 * Find the end of the list and add the new entry there
-	 */
-	while (l->next) {
-	    l = l->next;
-	}
-	l->next = new;
-    }
-    return AMVP_SUCCESS;
-}
 
 /*
- * Simple utility function to free a supported length
- * list from the capabilities structure.
- */
-static void amvp_cap_free_sl(AMVP_SL_LIST *list)
-{
-    AMVP_SL_LIST *top = list;
-    AMVP_SL_LIST *tmp;
-
-    while(top) {
-	tmp = top;
-	top = top->next;
-	free(tmp);
-    }
-}
-
-/*
- * This function is called by the application to register a crypto
- * capability for symmetric ciphers, along with a handler that the
- * application implements when that particular crypto operation is
- * needed by libamvp.
+ * This function is called by the application to register a test case
+ * specific handler
  *
- * This function should be called one or more times for each crypto
- * capability supported by the crypto module being validated.  This
- * needs to be called after amvp_create_test_session() and prior to
- * calling amvp_register().
+ * This function should be called one or more times for each module
+ * test. This * needs to be called after amvp_create_test_session() 
+ * and prior to calling amvp_register().
  *
  */
 AMVP_RESULT amvp_set_test_handler(
 	AMVP_CTX *ctx,
-        AMVP_RESULT (*test_handler)(AMVP_TEST_CASE *test_case))
+	const char *test_name,
+        AMVP_TEST_HANDLER_CALLBACK test_handler)
 {
+    AMVP_MODULE_TEST_HANDLER *mth;
     if (!ctx) {
         return AMVP_NO_CTX;
     }
-    if (!crypto_handler) {
+    if (!test_handler) {
         return AMVP_INVALID_ARG;
     }
-
-    cap = calloc(1, sizeof(AMVP_SYM_CIPHER_CAP));
-    if (!cap) {
-	return AMVP_MALLOC_FAIL;
+    if (test_name == NULL || strcmp(test_name, "default") == 0) {
+	ctx->default_test_handler = test_handler;
+	return AMVP_SUCCESS;
     }
+    mth = amvp_find_module_test(test_name);
+    if (mth == NULL) {
+	return AMVP_INVALID_ARG;
+    }
+    mth->test_handler = test_handler;
+    return AMVP_SUCCESS;
+}
 
-    //TODO: need to validate that cipher, mode, etc. are valid values
-    //      we also need to make sure we're not adding a duplicate
-    cap->direction = dir;
-    cap->keying_option = keying_option;
-    cap->ivgen_source = ivgen_source;
-    cap->ivgen_mode = ivgen_mode;
 
-    return (amvp_append_sym_cipher_caps_entry(ctx, cap, cipher, crypto_handler));
+/*
+ * Particular test does not apply for your module
+ */
+AMVP_RESULT 
+amvp_does_not_apply(AMVP_TEST_CASE *tc, const char *info)
+{
+	tc->test_response = AMVP_TEST_NOT_RELEVANT;
+	tc->log_count = 0;
+	tc->info = info;
+	return AMVP_SUCCESS;
+}
+
+/*
+ * This particular test has not been implemented by your module yet
+ */
+AMVP_RESULT 
+amvp_not_implemented(AMVP_TEST_CASE *tc)
+{
+	tc->test_response = AMVP_TEST_NOT_IMPLEMENTED;
+	tc->log_count = 0;
+	tc->info = NULL;
+	return AMVP_UNSUPPORTED_TEST;
 }
 
 /*
@@ -424,7 +430,7 @@ AMVP_RESULT amvp_set_certkey(AMVP_CTX *ctx, char *cert_file, char *key_file)
     return AMVP_SUCCESS;
 }
 
-
+#ifdef notdef
 static AMVP_RESULT amvp_build_hash_register_cap(JSON_Object *cap_obj, AMVP_CAPS_LIST *cap_entry)
 {
     json_object_set_string(cap_obj, "algorithm", amvp_lookup_cipher_name(cap_entry->cipher));
@@ -559,6 +565,7 @@ static AMVP_RESULT amvp_build_sym_cipher_register_cap(JSON_Object *cap_obj, AMVP
 
     return AMVP_SUCCESS;
 }
+#endif
 
 /*
  * This function builds the JSON register message that
@@ -567,7 +574,7 @@ static AMVP_RESULT amvp_build_sym_cipher_register_cap(JSON_Object *cap_obj, AMVP
  */
 static AMVP_RESULT amvp_build_register(AMVP_CTX *ctx, char **reg)
 {
-    AMVP_CAPS_LIST *cap_entry;
+    /*AMVP_CAPS_LIST *cap_entry; */
 
     JSON_Value *reg_arry_val  = NULL;
     //JSON_Object *reg_obj = NULL;
@@ -585,8 +592,8 @@ static AMVP_RESULT amvp_build_register(AMVP_CTX *ctx, char **reg)
     JSON_Array *caps_arr = NULL;
     JSON_Value *caps_val = NULL;
     JSON_Object *caps_obj = NULL;
-    JSON_Value *cap_val = NULL;
-    JSON_Object *cap_obj = NULL;
+    /*JSON_Value *cap_val = NULL; */
+    /*JSON_Object *cap_obj = NULL; */
     JSON_Value *vendor_val = NULL;
     JSON_Object *vendor_obj = NULL;
     JSON_Array *con_array_val  = NULL;
@@ -702,6 +709,7 @@ static AMVP_RESULT amvp_build_register(AMVP_CTX *ctx, char **reg)
      *       This will need rework when implementing the other
      *       sub-specifications.
      */
+#ifdef notdef
     if (ctx->caps_list) {
         cap_entry = ctx->caps_list;
         while (cap_entry) {
@@ -761,6 +769,7 @@ static AMVP_RESULT amvp_build_register(AMVP_CTX *ctx, char **reg)
             cap_entry = cap_entry->next;
         }
     }
+#endif
 
     /*
      * Add the entire caps exchange section to the top object
@@ -823,24 +832,25 @@ AMVP_RESULT amvp_register(AMVP_CTX *ctx)
  * Append a VS identifier to the list of VS identifiers
  * that will need to be downloaded and processed later.
  */
-static AMVP_RESULT amvp_append_vs_entry(AMVP_CTX *ctx, int vs_id)
+static AMVP_RESULT amvp_append_mt_entry(AMVP_CTX *ctx, 
+			int mt_id, const char *test_name)
 {
-    AMVP_VS_LIST *vs_entry, *vs_e2;
+    AMVP_MT_LIST *mt_entry, *mt_e2;
 
-    vs_entry = calloc(1, sizeof(AMVP_VS_LIST));
-    if (!vs_entry) {
+    mt_entry = calloc(1, sizeof(AMVP_MT_LIST));
+    if (!mt_entry) {
         return AMVP_MALLOC_FAIL;
     }
-    vs_entry->vs_id = vs_id;
+    mt_entry->test_case.mt_id = mt_id;
 
-    if (!ctx->vs_list) {
-        ctx->vs_list = vs_entry;
+    if (!ctx->mt_list) {
+        ctx->mt_list = mt_entry;
     } else {
-        vs_e2 = ctx->vs_list;
-        while (vs_e2->next) {
-            vs_e2 = vs_e2->next;
+        mt_e2 = ctx->mt_list;
+        while (mt_e2->next) {
+            mt_e2 = mt_e2->next;
         }
-        vs_e2->next = vs_entry;
+        mt_e2->next = mt_entry;
     }
     return (AMVP_SUCCESS);
 }
@@ -897,12 +907,13 @@ static AMVP_RESULT amvp_parse_register(AMVP_CTX *ctx)
     JSON_Object *cap_obj = NULL;
     AMVP_RESULT rv;
     char *json_buf = ctx->reg_buf;
-    JSON_Array *vect_sets;
-    JSON_Value *vs_val;
-    JSON_Object *vs_obj;
-    int i, vs_cnt;
-    int vs_id;
+    JSON_Array *module_tests;
+    JSON_Value *mt_val;
+    JSON_Object *mt_obj;
+    int i, mt_cnt;
+    int mt_id;
     const char *jwt;
+    const char *test_name;
 
     /*
      * Parse the JSON
@@ -944,19 +955,20 @@ static AMVP_RESULT amvp_parse_register(AMVP_CTX *ctx)
      */
     cap_obj = json_object_get_object(obj, "capabilityResponse");
     //const char *op = json_object_get_string(obj, "operation");
-    vect_sets = json_object_get_array(cap_obj, "vectorSets");
-    vs_cnt = json_array_get_count(vect_sets);
-    for (i = 0; i < vs_cnt; i++) {
-        vs_val = json_array_get_value(vect_sets, i);
-        vs_obj = json_value_get_object(vs_val);
-        vs_id = json_object_get_number(vs_obj, "vsId");
+    module_tests = json_object_get_array(cap_obj, "moduleTests");
+    mt_cnt = json_array_get_count(module_tests);
+    for (i = 0; i < mt_cnt; i++) {
+        mt_val = json_array_get_value(module_tests, i);
+        mt_obj = json_value_get_object(mt_val);
+        mt_id = json_object_get_number(mt_obj, "mtId");
+	test_name = json_object_get_string(mt_obj, "moduleTestName");
 
-        rv = amvp_append_vs_entry(ctx, vs_id);
+        rv = amvp_append_mt_entry(ctx, mt_id, test_name);
         if (rv != AMVP_SUCCESS) {
             json_value_free(val);
             return rv;
         }
-        amvp_log_msg(ctx, "Received vs_id=%d", vs_id);
+        amvp_log_msg(ctx, "Received mt_id=%d %s", mt_id, test_name);
     }
 
     json_value_free(val);
@@ -976,7 +988,7 @@ static AMVP_RESULT amvp_parse_register(AMVP_CTX *ctx)
 AMVP_RESULT amvp_process_tests(AMVP_CTX *ctx)
 {
     AMVP_RESULT rv;
-    AMVP_VS_LIST *vs_entry;
+    AMVP_MT_LIST *mt_entry;
 
     if (!ctx) {
         return AMVP_NO_CTX;
@@ -987,10 +999,10 @@ AMVP_RESULT amvp_process_tests(AMVP_CTX *ctx)
      * in the regisration response.  Process each vector set and
      * return the results to the server.
      */
-    vs_entry = ctx->vs_list;
-    while (vs_entry) {
-        rv = amvp_process_vsid(ctx, vs_entry->vs_id);
-        vs_entry = vs_entry->next;
+    mt_entry = ctx->mt_list;
+    while (mt_entry) {
+        rv = amvp_process_module_test(ctx, &mt_entry->test_case);
+        mt_entry = mt_entry->next;
     }
 
     return (rv);
@@ -1021,7 +1033,7 @@ AMVP_RESULT amvp_retry_handler(AMVP_CTX *ctx, unsigned int retry_period)
 AMVP_RESULT amvp_check_test_results(AMVP_CTX *ctx)
 {
     AMVP_RESULT rv;
-    AMVP_VS_LIST *vs_entry;
+    AMVP_MT_LIST *mt_entry;
 
     if (!ctx) {
         return AMVP_NO_CTX;
@@ -1032,10 +1044,10 @@ AMVP_RESULT amvp_check_test_results(AMVP_CTX *ctx)
      * in the regisration response.  Attempt to download the result
      * for each vector set.
      */
-    vs_entry = ctx->vs_list;
-    while (vs_entry) {
-        rv = amvp_get_result_vsid(ctx, vs_entry->vs_id);
-        vs_entry = vs_entry->next;
+    mt_entry = ctx->mt_list;
+    while (mt_entry) {
+        rv = amvp_get_result_mtid(ctx, &mt_entry->test_case);
+        mt_entry = mt_entry->next;
     }
 
     return (rv);
@@ -1049,72 +1061,38 @@ AMVP_RESULT amvp_check_test_results(AMVP_CTX *ctx)
 
 
 /*
- * This function will process a single KAT vector set.  Each KAT
- * vector set has an identifier associated with it, called
- * the vs_id.  During registration, libamvp will receive the
- * list of vs_id's that need to be processed during the test
- * session.  This routine will execute the test flow for a single
- * vs_id.  The flow is:
- *	a) Download the KAT vector set from the server using the vs_id
- *	b) Parse the KAT vectors
- *	c) Process each test case in the KAT vector set
- *	d) Generate the response data
- *	e) Send the response data back to the AMVP server
+ * This function will process a module test.  Each  module test
+ * has an identifier associated with it, called the mt_id.
+ * During registration, libamvp will receive the list of mt_id's that need 
+ * to be processed during the test session, along with the associated module 
+ * test number. This routing looks up the handler for each test and calls
+ * that handler to attach any logs and fill in any info to the test case.
  */
-static AMVP_RESULT amvp_process_vsid(AMVP_CTX *ctx, int vs_id)
+static AMVP_RESULT amvp_process_module_test(AMVP_CTX *ctx, AMVP_TEST_CASE *tc)
 {
+    const char *test_name = tc->test_name;
+    AMVP_MODULE_TEST_HANDLER *mth;
     AMVP_RESULT rv;
-    JSON_Value *val;
-    JSON_Object *obj = NULL;
-    char *json_buf;
-    int retry = 1;
 
-    //TODO: do we want to limit the number of retries?
-    while (retry) {
-        /*
-         * Get the KAT vector set
-         */
-        rv = amvp_retrieve_vector_set(ctx, vs_id);
-        if (rv != AMVP_SUCCESS) {
-            return (rv);
-        }
-        json_buf = ctx->kat_buf;
-        printf("\n%s\n", ctx->kat_buf);
-        val = json_parse_string_with_comments(json_buf);
-        if (!val) {
-            amvp_log_msg(ctx, "JSON parse error");
-            return AMVP_JSON_ERR;
-        }
-        obj = amvp_get_obj_from_rsp(val);
-        ctx->vs_id = vs_id;
+    amvp_log_msg(ctx, "mtId: %d", tc->mt_id);
+    amvp_log_msg(ctx, "AMV test: %s", test_name);
 
-        /*
-         * Check if we received a retry response
-         */
-        unsigned int retry_period = json_object_get_number(obj, "retry");
-        if (retry_period) {
-            rv = amvp_retry_handler(ctx, retry_period);
-        } else {
-            /*
-             * Process the KAT vectors
-             */
-            rv = amvp_process_vector_set(ctx, obj);
-        }
-        json_value_free(val);
-
-        /*
-         * Check if we need to retry the download because
-         * the KAT values were not ready
-         */
-        if (AMVP_KAT_DOWNLOAD_RETRY == rv) {
-            retry = 1;
-        } else if (rv != AMVP_SUCCESS) {
-            return (rv);
-        } else {
-            retry = 0;
-        }
+    mth = amvp_find_module_test(test_name);
+    if (mth == NULL) {
+	return amvp_not_implemented(tc);
     }
+    tc->test_type = mth->test_type;
+    if (mth->test_handler) {
+       rv = mth->test_handler(ctx, tc);
+    } else if (ctx->default_test_handler) {
+       rv = ctx->default_test_handler(ctx, tc);
+    } else {
+	rv = amvp_not_implemented(tc);
+    }
+    return rv;
+}
 
+#ifdef notdef
     /*
      * Send the responses to the AMVP server
      */
@@ -1126,81 +1104,20 @@ static AMVP_RESULT amvp_process_vsid(AMVP_CTX *ctx, int vs_id)
     return AMVP_SUCCESS;
 }
 
-
-/*
- * This function is used to invoke the appropriate handler function
- * for a given ACV operation.  The operation is specified in the
- * KAT vector set that was previously downloaded.  The handler function
- * is looked up in the alg_tbl[] and invoked here.
- */
-static AMVP_RESULT amvp_dispatch_vector_set(AMVP_CTX *ctx, JSON_Object *obj)
-{
-    int i;
-    const char *alg = json_object_get_string(obj, "algorithm");
-    const char *dir = json_object_get_string(obj, "direction");
-    int vs_id = json_object_get_number(obj, "vsId");
-    AMVP_RESULT rv;
-
-    if (!alg) {
-        amvp_log_msg(ctx, "JSON parse error: ACV algorithm not found");
-        return AMVP_JSON_ERR;
-    }
-
-    amvp_log_msg(ctx, "vsId: %d", vs_id);
-    amvp_log_msg(ctx, "ACV Operation: %s", alg);
-    amvp_log_msg(ctx, "ACV Direction: %s", dir);
-    amvp_log_msg(ctx, "ACV version: %s", json_object_get_string(obj, "acvVersion"));
-
-    for (i = 0; i < AMVP_ALG_MAX; i++) {
-        if (!strncmp(alg, alg_tbl[i].name, strlen(alg_tbl[i].name))) {
-            rv = (alg_tbl[i].handler)(ctx, obj);
-            return rv;
-        }
-    }
-    return AMVP_UNSUPPORTED_OP;
-}
-
-/*
- * This function is used to process the test cases for
- * a given KAT vector set.  This is invoked after the
- * KAT vector set has been downloaded from the server.  The
- * vectors are stored on the AMVP_CTX in one of the
- * transitory fields.  Therefore, the vs_id isn't needed
- * here to know which vectors need to be processed.
- *
- * The processing logic is:
- *	a) JSON parse the data
- *	b) Identify the AMVP operation to be performed (e.g. AES encrypt)
- *	c) Dispatch the vectors to the handler for the
- *	   specified AMVP operation.
- */
-static AMVP_RESULT amvp_process_vector_set(AMVP_CTX *ctx, JSON_Object *obj)
-{
-    AMVP_RESULT rv;
-
-    rv = amvp_dispatch_vector_set(ctx, obj);
-    if (rv != AMVP_SUCCESS) {
-        return rv;
-    }
-
-    amvp_log_msg(ctx, "Successfully processed KAT vector set");
-
-    return AMVP_SUCCESS;
-
-}
+#endif
 
 
 /*
  * This function will get the test results for a single KAT vector set.
  */
-static AMVP_RESULT amvp_get_result_vsid(AMVP_CTX *ctx, int vs_id)
+static AMVP_RESULT amvp_get_result_mtid(AMVP_CTX *ctx, AMVP_TEST_CASE *tc)
 {
+#ifdef notdef
     AMVP_RESULT rv;
     JSON_Value *val;
     JSON_Object *obj = NULL;
     char *json_buf;
     int retry = 1;
-
     //TODO: do we want to limit the number of retries?
     while (retry) {
         /*
@@ -1247,6 +1164,7 @@ static AMVP_RESULT amvp_get_result_vsid(AMVP_CTX *ctx, int vs_id)
             retry = 0;
         }
     }
+#endif
 
     return AMVP_SUCCESS;
 }
