@@ -12,12 +12,15 @@ OS_UTIL=linux_util
 SOURCES=src/amvp.c src/amvp_transport.c src/amvp_util.c src/parson.c src/midbg.c src/$(OS_UTIL).c
 #SOURCES=src/midbg.c src/$(OS_UTIL).c
 OBJECTS=$(SOURCES:.c=.o)
-HEADERS=src/amvp.h src/midbg.h
+HEADERS=src/amvp.h src/midbg.h src/os_util.h
 
 #all: libamvp.a nss_app
-all: local_app pk11mode pk11debug simple_test
+all: local_app pk11mode pk11debug simple_test docs/html
 
 .PHONY: test testcpp
+
+docs/html: docs/amvp.conf $(HEADERS)
+	doxygen docs/amvp.conf 
 
 libamvp.a: $(OBJECTS) $(HEADERS) 
 	ar rcs libamvp.a $(OBJECTS)
@@ -55,3 +58,7 @@ clean:
 	rm -f local_app
 	rm -f pk11mode pk11debug simple_test
 	rm -f *.db
+	rm -rf docs/html
+	rm -rf docs/latex
+	rm -rf docs/man
+	rm -rf docs/rtf

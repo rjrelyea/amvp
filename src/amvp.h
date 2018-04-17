@@ -44,11 +44,10 @@ extern "C"
  *
  *         1. Create the context
  *         2. Specify the server hostname
- *         3. Specify the crypto algorithms to test
- *         4. Register with the AMVP server
- *         5. Commence the test with the server
- *         6. Check the test results
- *         7. Free the context
+ *         3. Register with the AMVP server
+ *         4. Commence the test with the server
+ *         5. Return the results
+ *         6. Free the context
  */
 typedef struct amvp_ctx_t AMVP_CTX;
 
@@ -60,6 +59,11 @@ typedef struct amvp_ctx_t AMVP_CTX;
  */
 typedef enum amvp_result AMVP_RESULT;
 
+/*
+ *! @enum AMVP_RESULT
+ *  @brief Enum specifying the actual AMVP test case, which maps the the
+ *         TE requirement.
+ */
 /*
  * These are the available symmetric algorithms that libamvp supports.  The application
  * layer will need to register one or more of these based on the capabilities
@@ -122,6 +126,18 @@ typedef enum amvp_test {
     AMVP_TEST_END
 } AMVP_TEST;
 
+/*
+ *! @enum AMVP_TEST_RESPONSE
+ *  @brief Value to return to the server for each test case.
+ *     AMVP_TEST_PASSED_WITH_LOG - test passed, one or more logs returned.
+ *     AMVP_TEST_FAILED_WITH_LOG - test failed, one or more logs returned.
+ *     AMVP_TEST_FAILED - test failed do to environmental issues, no log was 
+ *                        generated
+ *     AMVP_TEST_NOT_IMPLEMENTED - test case was not recognized, not test is
+ *                        available for this test case.
+ *     AMVP_TEST_NOT_RELEVANT - test does not apply to this module. Explanatory
+ *                        note included.
+ */
 typedef enum amvp_test_response {
     AMVP_TEST_PASSED_WITH_LOG = 0,
     AMVP_TEST_FAILED_WITH_LOG,
@@ -140,9 +156,9 @@ typedef AMVP_RESULT (*AMVP_TEST_HANDLER_CALLBACK)(AMVP_CTX *ctx,
  * This data is passed between libamvp and the crypto module.  libamvp will 
  * parse the test case parameters from the JSON encoded test vector, 
  * fill in this structure, and pass the struct to the crypto module via the
- * handler that was registered with libamvp.  The crypto module will
- * then need to perform the TE test and fill in the log
- * items in the struct for the given test case.  The struct is then
+ * handler that was registered with libamvp.  The test client will
+ * then need to perform the TE test against the crypto module and fill in 
+ * the log items in the struct for the given test case.  The struct is then
  * passed back to libamvp, where it is then used to build the JSON
  * encoded vector response.
  */
@@ -358,17 +374,34 @@ AMVP_RESULT amvp_set_module_info(AMVP_CTX *ctx,
 AMVP_RESULT amvp_check_test_results(AMVP_CTX *ctx);
 void amvp_cleanup(void);
 
+/*! @brief amvp_lookup_test_name() return an ascii string for a particular
+    test. String is a const char and does not need to be freed.
+
+    @param test_type AMVP_TEST enum value.
+    @return const char *
+ */
 const char * amvp_lookup_test_name(AMVP_TEST test_type);
+/*! @brief amvp_lookup_test_type() return the AMVP_TEST enum for a particular
+    test.
+
+    @param test_name char * pointing to the name of the test.
+    @return AMVP_TEST
+ */
 AMVP_TEST amvp_lookup_test_type(const char *test_name);
 
 
-/*
- * This particular test has not been implemented by your module yet
+/*! @brief amvp_not_implemented() Mark this test case as not implemented.
+ *
+    @param tc Pointer the the AMVP_TEST_CASE.
+    @return AMVP_RESULT
  */
 AMVP_RESULT amvp_not_implemented(AMVP_TEST_CASE *tc);
 
-/*
- * This particular test has not apply to your module 
+/*! @brief amvp_does_not_apply() Mark this test case as not applicable to the
+ *  module under test.
+ *
+    @param info Pointer to a string explaining why the test does not apply.
+    @return AMVP_RESULT
  */
 AMVP_RESULT amvp_does_not_apply(AMVP_TEST_CASE *tc, const char *info);
 

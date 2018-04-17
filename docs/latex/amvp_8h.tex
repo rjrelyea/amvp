@@ -1,0 +1,516 @@
+\hypertarget{amvp_8h}{\section{src/amvp.h File Reference}
+\label{amvp_8h}\index{src/amvp.\-h@{src/amvp.\-h}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structamvp__tc__t}{amvp\-\_\-tc\-\_\-t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{amvp_8h_a1a9d938d1fc005437db7aec6c6efcc03}{\#define {\bfseries A\-M\-V\-P\-\_\-\-M\-A\-X\-\_\-\-L\-O\-G\-\_\-\-C\-O\-U\-N\-T}~3}\label{amvp_8h_a1a9d938d1fc005437db7aec6c6efcc03}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{amvp_8h_a25a99c7cd86d75ea1faf40ba9a6f9865}{typedef struct \hyperlink{structamvp__ctx__t}{amvp\-\_\-ctx\-\_\-t} {\bfseries A\-M\-V\-P\-\_\-\-C\-T\-X}}\label{amvp_8h_a25a99c7cd86d75ea1faf40ba9a6f9865}
+
+\item 
+\hypertarget{amvp_8h_a6fc4f6176dcff306259537646bb99375}{typedef enum amvp\-\_\-result {\bfseries A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T}}\label{amvp_8h_a6fc4f6176dcff306259537646bb99375}
+
+\item 
+\hypertarget{amvp_8h_a4c5df7a3dca1cb5eb8c57273720f7d08}{typedef enum amvp\-\_\-test {\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T}}\label{amvp_8h_a4c5df7a3dca1cb5eb8c57273720f7d08}
+
+\item 
+\hypertarget{amvp_8h_a49161de97d45f21aea889dc16b4d5f89}{typedef enum amvp\-\_\-test\-\_\-response {\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-R\-E\-S\-P\-O\-N\-S\-E}}\label{amvp_8h_a49161de97d45f21aea889dc16b4d5f89}
+
+\item 
+\hypertarget{amvp_8h_a27ab60f299dabd64f329cddcd73cc4a2}{typedef struct \hyperlink{structamvp__tc__t}{amvp\-\_\-tc\-\_\-t} {\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-C\-A\-S\-E}}\label{amvp_8h_a27ab60f299dabd64f329cddcd73cc4a2}
+
+\item 
+\hypertarget{amvp_8h_a837eb4200a6d5f9250bd483391b4a4a2}{typedef void($\ast$ {\bfseries A\-M\-V\-P\-\_\-\-C\-L\-E\-A\-N\-U\-P\-\_\-\-F\-U\-N\-C} )(\hyperlink{structamvp__tc__t}{A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-C\-A\-S\-E} $\ast$tc)}\label{amvp_8h_a837eb4200a6d5f9250bd483391b4a4a2}
+
+\item 
+\hypertarget{amvp_8h_a73f978b51857c53ce74b6a088937523c}{typedef \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T}($\ast$ {\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-H\-A\-N\-D\-L\-E\-R\-\_\-\-C\-A\-L\-L\-B\-A\-C\-K} )(\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx, \hyperlink{structamvp__tc__t}{A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-C\-A\-S\-E} $\ast$test\-\_\-case)}\label{amvp_8h_a73f978b51857c53ce74b6a088937523c}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries amvp\-\_\-test} \{ \\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E01\-\_\-03\-\_\-02} = 0, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E01\-\_\-04\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E02\-\_\-06\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E02\-\_\-06\-\_\-04}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E02\-\_\-13\-\_\-03}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E02\-\_\-14\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-02\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-11\-\_\-02}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-11\-\_\-03}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-03\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-14\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-15\-\_\-02}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-17\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-18\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-21\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-22\-\_\-02}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-23\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E03\-\_\-24\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E04\-\_\-03\-\_\-01}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E04\-\_\-05\-\_\-08}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-01\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-02\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-15\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-15\-\_\-03}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-15\-\_\-04}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-23\-\_\-03}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-25\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-27\-\_\-02}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-29\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-32\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-39\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E07\-\_\-41\-\_\-02}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-04\-\_\-03}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-05\-\_\-03}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-06\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-07\-\_\-03}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-09\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-10\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-12\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-16\-\_\-01}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-16\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-19\-\_\-03}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-22\-\_\-07}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-24\-\_\-01}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-27\-\_\-01}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-27\-\_\-02}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-31\-\_\-01}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-33\-\_\-01}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-35\-\_\-04}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E09\-\_\-35\-\_\-05}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-E\-N\-D}
+ \}
+\item 
+enum {\bfseries amvp\-\_\-test\-\_\-response} \{ \\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-P\-A\-S\-S\-E\-D\-\_\-\-W\-I\-T\-H\-\_\-\-L\-O\-G} = 0, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-F\-A\-I\-L\-E\-D\-\_\-\-W\-I\-T\-H\-\_\-\-L\-O\-G}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-F\-A\-I\-L\-E\-D}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-N\-O\-T\-\_\-\-I\-M\-P\-L\-E\-M\-E\-N\-T\-E\-D}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-N\-O\-T\-\_\-\-R\-E\-L\-E\-V\-A\-N\-T}
+ \}
+\item 
+enum {\bfseries amvp\-\_\-result} \{ \\*
+{\bfseries A\-M\-V\-P\-\_\-\-S\-U\-C\-C\-E\-S\-S} = 0, 
+{\bfseries A\-M\-V\-P\-\_\-\-M\-A\-L\-L\-O\-C\-\_\-\-F\-A\-I\-L}, 
+{\bfseries A\-M\-V\-P\-\_\-\-N\-O\-\_\-\-C\-T\-X}, 
+{\bfseries A\-M\-V\-P\-\_\-\-T\-R\-A\-N\-S\-P\-O\-R\-T\-\_\-\-F\-A\-I\-L}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-J\-S\-O\-N\-\_\-\-E\-R\-R}, 
+{\bfseries A\-M\-V\-P\-\_\-\-U\-N\-S\-U\-P\-P\-O\-R\-T\-E\-D\-\_\-\-T\-E\-S\-T}, 
+{\bfseries A\-M\-V\-P\-\_\-\-C\-L\-E\-A\-N\-U\-P\-\_\-\-F\-A\-I\-L}, 
+{\bfseries A\-M\-V\-P\-\_\-\-K\-A\-T\-\_\-\-D\-O\-W\-N\-L\-O\-A\-D\-\_\-\-R\-E\-T\-R\-Y}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-I\-N\-V\-A\-L\-I\-D\-\_\-\-A\-R\-G}, 
+{\bfseries A\-M\-V\-P\-\_\-\-C\-R\-Y\-P\-T\-O\-\_\-\-M\-O\-D\-U\-L\-E\-\_\-\-F\-A\-I\-L}, 
+{\bfseries A\-M\-V\-P\-\_\-\-N\-O\-\_\-\-T\-O\-K\-E\-N}, 
+{\bfseries A\-M\-V\-P\-\_\-\-N\-O\-\_\-\-C\-A\-P}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-M\-A\-L\-F\-O\-R\-M\-E\-D\-\_\-\-J\-S\-O\-N}, 
+{\bfseries A\-M\-V\-P\-\_\-\-D\-A\-T\-A\-\_\-\-T\-O\-O\-\_\-\-L\-A\-R\-G\-E}, 
+{\bfseries A\-M\-V\-P\-\_\-\-D\-U\-P\-\_\-\-C\-I\-P\-H\-E\-R}, 
+{\bfseries A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T\-\_\-\-M\-A\-X}, 
+\\*
+{\bfseries A\-M\-V\-P\-\_\-\-D\-B\-G\-\_\-\-E\-R\-R}, 
+{\bfseries A\-M\-V\-P\-\_\-\-D\-B\-G\-\_\-\-P\-A\-R\-S\-E\-\_\-\-E\-R\-R}, 
+{\bfseries A\-M\-V\-P\-\_\-\-D\-B\-G\-\_\-\-U\-N\-K\-N\-O\-W\-N\-\_\-\-B\-R\-E\-A\-K\-P\-O\-I\-N\-T}, 
+{\bfseries A\-M\-V\-P\-\_\-\-R\-E\-S\-O\-U\-R\-C\-E\-\_\-\-F\-A\-I\-L}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_af628c1972cfa1f74d56be6f4f5115baf}{amvp\-\_\-create\-\_\-test\-\_\-session} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$$\ast$ctx, \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T}($\ast$progress\-\_\-cb)(char $\ast$msg))
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_af628c1972cfa1f74d56be6f4f5115baf}{amvp\-\_\-create\-\_\-test\-\_\-session()} creates a context that can be used to commence a test session with an A\-M\-V\-P server. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_a1cfaae59ace172c0698dddcc5146c2a6}{amvp\-\_\-free\-\_\-test\-\_\-session} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_a1cfaae59ace172c0698dddcc5146c2a6}{amvp\-\_\-free\-\_\-test\-\_\-session()} releases the memory associated with an \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X}. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_a52516e04dceec62a7def9443dd28271e}{amvp\-\_\-set\-\_\-server} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx, char $\ast$server\-\_\-name, int port)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_a52516e04dceec62a7def9443dd28271e}{amvp\-\_\-set\-\_\-server()} specifies the A\-M\-V\-P server and T\-C\-P port number to use when contacting the server. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_ab2cc508cf1e3ec2dee379d401669de0f}{amvp\-\_\-set\-\_\-path\-\_\-segment} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx, char $\ast$path\-\_\-segment)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_ab2cc508cf1e3ec2dee379d401669de0f}{amvp\-\_\-set\-\_\-path\-\_\-segment()} specifies the U\-R\-I prefix used by the A\-M\-V\-P server. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_ae188fd1b59bd531853be238e1c0f0b8e}{amvp\-\_\-set\-\_\-cacerts} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx, char $\ast$ca\-\_\-file)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_ae188fd1b59bd531853be238e1c0f0b8e}{amvp\-\_\-set\-\_\-cacerts()} specifies P\-E\-M encoded certificates to use as the root trust anchors for establishing the T\-L\-S session with the A\-M\-V\-P server. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_a09996f1527ed324102d6e88bd90044d2}{amvp\-\_\-set\-\_\-certkey} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx, char $\ast$cert\-\_\-file, char $\ast$key\-\_\-file)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_a09996f1527ed324102d6e88bd90044d2}{amvp\-\_\-set\-\_\-certkey()} specifies P\-E\-M encoded certificate and private key to use for establishing the T\-L\-S session with the A\-M\-V\-P server. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_a251cfd0283bf43677c5212f9ce7c073a}{amvp\-\_\-register} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_a251cfd0283bf43677c5212f9ce7c073a}{amvp\-\_\-register()} registers the D\-U\-T with the A\-M\-V\-P server. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_ad3c004ce730d82ebe4e257e952de6682}{amvp\-\_\-process\-\_\-tests} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_ad3c004ce730d82ebe4e257e952de6682}{amvp\-\_\-process\-\_\-tests()} performs the A\-M\-V\-P testing procedures. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_a3e2e0a8e39f1a1022dcdde62a4669a66}{amvp\-\_\-set\-\_\-vendor\-\_\-info} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx, const char $\ast$vendor\-\_\-name, const char $\ast$vendor\-\_\-url, const char $\ast$contact\-\_\-name, const char $\ast$contact\-\_\-email)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_a3e2e0a8e39f1a1022dcdde62a4669a66}{amvp\-\_\-set\-\_\-vendor\-\_\-info()} specifies the vendor attributes for the test session. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_a6c369c4e6f0e27051607e5bc00ea37cb}{amvp\-\_\-set\-\_\-module\-\_\-info} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx, const char $\ast$module\-\_\-name, const char $\ast$module\-\_\-type, const char $\ast$module\-\_\-version, const char $\ast$module\-\_\-description)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_a6c369c4e6f0e27051607e5bc00ea37cb}{amvp\-\_\-set\-\_\-module\-\_\-info()} specifies the crypto module attributes for the test session. \end{DoxyCompactList}\item 
+\hypertarget{amvp_8h_afc137291ba6212077d5af18b4d7c7d76}{\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} {\bfseries amvp\-\_\-check\-\_\-test\-\_\-results} (\hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$ctx)}\label{amvp_8h_afc137291ba6212077d5af18b4d7c7d76}
+
+\item 
+\hypertarget{amvp_8h_ad29fb1a9d622c1b8807384e07826ad19}{void {\bfseries amvp\-\_\-cleanup} (void)}\label{amvp_8h_ad29fb1a9d622c1b8807384e07826ad19}
+
+\item 
+const char $\ast$ \hyperlink{amvp_8h_aef9e6d5bd96d7f7a5355fa240147ad20}{amvp\-\_\-lookup\-\_\-test\-\_\-name} (A\-M\-V\-P\-\_\-\-T\-E\-S\-T test\-\_\-type)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_aef9e6d5bd96d7f7a5355fa240147ad20}{amvp\-\_\-lookup\-\_\-test\-\_\-name()} return an ascii string for a particular test. String is a const char and does not need to be freed. \end{DoxyCompactList}\item 
+A\-M\-V\-P\-\_\-\-T\-E\-S\-T \hyperlink{amvp_8h_a3cfaee665578de7d947c74023e7d757f}{amvp\-\_\-lookup\-\_\-test\-\_\-type} (const char $\ast$test\-\_\-name)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_a3cfaee665578de7d947c74023e7d757f}{amvp\-\_\-lookup\-\_\-test\-\_\-type()} return the A\-M\-V\-P\-\_\-\-T\-E\-S\-T enum for a particular test. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_a900277f56b43928cf0872a80bdf2a116}{amvp\-\_\-not\-\_\-implemented} (\hyperlink{structamvp__tc__t}{A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-C\-A\-S\-E} $\ast$tc)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_a900277f56b43928cf0872a80bdf2a116}{amvp\-\_\-not\-\_\-implemented()} Mark this test case as not implemented. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{amvp_8h_aeb93f9081b6a5ead8747d25ebd7d59ce}{amvp\-\_\-does\-\_\-not\-\_\-apply} (\hyperlink{structamvp__tc__t}{A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-C\-A\-S\-E} $\ast$tc, const char $\ast$info)
+\begin{DoxyCompactList}\small\item\em \hyperlink{amvp_8h_aeb93f9081b6a5ead8747d25ebd7d59ce}{amvp\-\_\-does\-\_\-not\-\_\-apply()} Mark this test case as not applicable to the module under test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the public header file to be included by applications using libamvp. 
+
+\subsection{Function Documentation}
+\hypertarget{amvp_8h_af628c1972cfa1f74d56be6f4f5115baf}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-create\-\_\-test\-\_\-session@{amvp\-\_\-create\-\_\-test\-\_\-session}}
+\index{amvp\-\_\-create\-\_\-test\-\_\-session@{amvp\-\_\-create\-\_\-test\-\_\-session}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-create\-\_\-test\-\_\-session}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-create\-\_\-test\-\_\-session (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$$\ast$}]{ctx, }
+\item[{{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T}($\ast$)(char $\ast$msg)}]{progress\-\_\-cb}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_af628c1972cfa1f74d56be6f4f5115baf}
+
+
+\hyperlink{amvp_8h_af628c1972cfa1f74d56be6f4f5115baf}{amvp\-\_\-create\-\_\-test\-\_\-session()} creates a context that can be used to commence a test session with an A\-M\-V\-P server. 
+
+This function should be called first to create a context that is used to manage all the A\-P\-I calls into libamvp. The context should be released after the test session has completed by invoking \hyperlink{amvp_8h_a1cfaae59ace172c0698dddcc5146c2a6}{amvp\-\_\-free\-\_\-test\-\_\-session()}.
+
+When creating a new test session, a function pointer can be provided to receive logging messages from libamvp. The application can then forward the log messages to any logging service it desires, such as syslog.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Address of pointer to unallocated \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X}. \\
+\hline
+{\em progress\-\_\-cb} & Address of function to receive log messages from libamvp.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_aeb93f9081b6a5ead8747d25ebd7d59ce}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-does\-\_\-not\-\_\-apply@{amvp\-\_\-does\-\_\-not\-\_\-apply}}
+\index{amvp\-\_\-does\-\_\-not\-\_\-apply@{amvp\-\_\-does\-\_\-not\-\_\-apply}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-does\-\_\-not\-\_\-apply}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-does\-\_\-not\-\_\-apply (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-C\-A\-S\-E} $\ast$}]{tc, }
+\item[{const char $\ast$}]{info}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_aeb93f9081b6a5ead8747d25ebd7d59ce}
+
+
+\hyperlink{amvp_8h_aeb93f9081b6a5ead8747d25ebd7d59ce}{amvp\-\_\-does\-\_\-not\-\_\-apply()} Mark this test case as not applicable to the module under test. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em info} & Pointer to a string explaining why the test does not apply. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_a1cfaae59ace172c0698dddcc5146c2a6}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-free\-\_\-test\-\_\-session@{amvp\-\_\-free\-\_\-test\-\_\-session}}
+\index{amvp\-\_\-free\-\_\-test\-\_\-session@{amvp\-\_\-free\-\_\-test\-\_\-session}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-free\-\_\-test\-\_\-session}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-free\-\_\-test\-\_\-session (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_a1cfaae59ace172c0698dddcc5146c2a6}
+
+
+\hyperlink{amvp_8h_a1cfaae59ace172c0698dddcc5146c2a6}{amvp\-\_\-free\-\_\-test\-\_\-session()} releases the memory associated with an \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X}. 
+
+This function will free an \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X}. Failure to invoke this function will result in a memory leak in the application layer. This function should be invoked after a test session has completed and a reference to the context is no longer needed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_aef9e6d5bd96d7f7a5355fa240147ad20}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-lookup\-\_\-test\-\_\-name@{amvp\-\_\-lookup\-\_\-test\-\_\-name}}
+\index{amvp\-\_\-lookup\-\_\-test\-\_\-name@{amvp\-\_\-lookup\-\_\-test\-\_\-name}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-lookup\-\_\-test\-\_\-name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ amvp\-\_\-lookup\-\_\-test\-\_\-name (
+\begin{DoxyParamCaption}
+\item[{A\-M\-V\-P\-\_\-\-T\-E\-S\-T}]{test\-\_\-type}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_aef9e6d5bd96d7f7a5355fa240147ad20}
+
+
+\hyperlink{amvp_8h_aef9e6d5bd96d7f7a5355fa240147ad20}{amvp\-\_\-lookup\-\_\-test\-\_\-name()} return an ascii string for a particular test. String is a const char and does not need to be freed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\-\_\-type} & A\-M\-V\-P\-\_\-\-T\-E\-S\-T enum value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const char $\ast$ 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_a3cfaee665578de7d947c74023e7d757f}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-lookup\-\_\-test\-\_\-type@{amvp\-\_\-lookup\-\_\-test\-\_\-type}}
+\index{amvp\-\_\-lookup\-\_\-test\-\_\-type@{amvp\-\_\-lookup\-\_\-test\-\_\-type}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-lookup\-\_\-test\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}A\-M\-V\-P\-\_\-\-T\-E\-S\-T amvp\-\_\-lookup\-\_\-test\-\_\-type (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{test\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_a3cfaee665578de7d947c74023e7d757f}
+
+
+\hyperlink{amvp_8h_a3cfaee665578de7d947c74023e7d757f}{amvp\-\_\-lookup\-\_\-test\-\_\-type()} return the A\-M\-V\-P\-\_\-\-T\-E\-S\-T enum for a particular test. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em test\-\_\-name} & char $\ast$ pointing to the name of the test. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A\-M\-V\-P\-\_\-\-T\-E\-S\-T 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_a900277f56b43928cf0872a80bdf2a116}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-not\-\_\-implemented@{amvp\-\_\-not\-\_\-implemented}}
+\index{amvp\-\_\-not\-\_\-implemented@{amvp\-\_\-not\-\_\-implemented}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-not\-\_\-implemented}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-not\-\_\-implemented (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-C\-A\-S\-E} $\ast$}]{tc}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_a900277f56b43928cf0872a80bdf2a116}
+
+
+\hyperlink{amvp_8h_a900277f56b43928cf0872a80bdf2a116}{amvp\-\_\-not\-\_\-implemented()} Mark this test case as not implemented. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tc} & Pointer the the A\-M\-V\-P\-\_\-\-T\-E\-S\-T\-\_\-\-C\-A\-S\-E. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_ad3c004ce730d82ebe4e257e952de6682}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-process\-\_\-tests@{amvp\-\_\-process\-\_\-tests}}
+\index{amvp\-\_\-process\-\_\-tests@{amvp\-\_\-process\-\_\-tests}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-process\-\_\-tests}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-process\-\_\-tests (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_ad3c004ce730d82ebe4e257e952de6682}
+
+
+\hyperlink{amvp_8h_ad3c004ce730d82ebe4e257e952de6682}{amvp\-\_\-process\-\_\-tests()} performs the A\-M\-V\-P testing procedures. 
+
+This function will commence the test session after the D\-U\-T has been registered with the A\-M\-V\-P server. This function should be invoked after \hyperlink{amvp_8h_a251cfd0283bf43677c5212f9ce7c073a}{amvp\-\_\-register()} finishes. When invoked, this function will download the vector sets from the A\-M\-V\-P server, process the vectors, and upload the results to the server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_a251cfd0283bf43677c5212f9ce7c073a}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-register@{amvp\-\_\-register}}
+\index{amvp\-\_\-register@{amvp\-\_\-register}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-register}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-register (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_a251cfd0283bf43677c5212f9ce7c073a}
+
+
+\hyperlink{amvp_8h_a251cfd0283bf43677c5212f9ce7c073a}{amvp\-\_\-register()} registers the D\-U\-T with the A\-M\-V\-P server. 
+
+This function is used to regitser the D\-U\-T with the server. Registration allows the D\-U\-T to advertise it's capabilities to the server. The server will respond with a set of vector set identifiers that the client will need to process.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_ae188fd1b59bd531853be238e1c0f0b8e}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-set\-\_\-cacerts@{amvp\-\_\-set\-\_\-cacerts}}
+\index{amvp\-\_\-set\-\_\-cacerts@{amvp\-\_\-set\-\_\-cacerts}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-set\-\_\-cacerts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-set\-\_\-cacerts (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx, }
+\item[{char $\ast$}]{ca\-\_\-file}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_ae188fd1b59bd531853be238e1c0f0b8e}
+
+
+\hyperlink{amvp_8h_ae188fd1b59bd531853be238e1c0f0b8e}{amvp\-\_\-set\-\_\-cacerts()} specifies P\-E\-M encoded certificates to use as the root trust anchors for establishing the T\-L\-S session with the A\-M\-V\-P server. 
+
+A\-M\-V\-P uses T\-L\-S as the transport. In order to verify the identity of the A\-M\-V\-P server, the T\-L\-S stack requires one or more root certificates that can be used to verify the identify of the A\-M\-V\-P T\-L\-S certificate during the T\-L\-S handshake. These root certificates are set using this function. They must be P\-E\-M encoded and all contained in the same file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session. \\
+\hline
+{\em ca\-\_\-file} & Name of file containing all the P\-E\-M encoded X.\-509 certificates used as trust anchors for the T\-L\-S session.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_a09996f1527ed324102d6e88bd90044d2}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-set\-\_\-certkey@{amvp\-\_\-set\-\_\-certkey}}
+\index{amvp\-\_\-set\-\_\-certkey@{amvp\-\_\-set\-\_\-certkey}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-set\-\_\-certkey}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-set\-\_\-certkey (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx, }
+\item[{char $\ast$}]{cert\-\_\-file, }
+\item[{char $\ast$}]{key\-\_\-file}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_a09996f1527ed324102d6e88bd90044d2}
+
+
+\hyperlink{amvp_8h_a09996f1527ed324102d6e88bd90044d2}{amvp\-\_\-set\-\_\-certkey()} specifies P\-E\-M encoded certificate and private key to use for establishing the T\-L\-S session with the A\-M\-V\-P server. 
+
+A\-M\-V\-P uses T\-L\-S as the transport. In order for the A\-M\-V\-P server to verify the identity the D\-U\-T using libamvp, a certificate needs to be presented during the T\-L\-S handshake. The certificate used by libamvp needs to be trusted by the A\-M\-V\-P server. Otherwise the T\-L\-S handshake will fail.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session. \\
+\hline
+{\em cert\-\_\-file} & Name of file containing the P\-E\-M encoded X.\-509 certificate to use as the client identity. \\
+\hline
+{\em key\-\_\-file} & Name of file containing P\-E\-M encoded private key associated with the client certificate.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_a6c369c4e6f0e27051607e5bc00ea37cb}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-set\-\_\-module\-\_\-info@{amvp\-\_\-set\-\_\-module\-\_\-info}}
+\index{amvp\-\_\-set\-\_\-module\-\_\-info@{amvp\-\_\-set\-\_\-module\-\_\-info}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-set\-\_\-module\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-set\-\_\-module\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx, }
+\item[{const char $\ast$}]{module\-\_\-name, }
+\item[{const char $\ast$}]{module\-\_\-type, }
+\item[{const char $\ast$}]{module\-\_\-version, }
+\item[{const char $\ast$}]{module\-\_\-description}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_a6c369c4e6f0e27051607e5bc00ea37cb}
+
+
+\hyperlink{amvp_8h_a6c369c4e6f0e27051607e5bc00ea37cb}{amvp\-\_\-set\-\_\-module\-\_\-info()} specifies the crypto module attributes for the test session. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session. \\
+\hline
+{\em module\-\_\-name} & Name of the crypto module under test. \\
+\hline
+{\em module\-\_\-type} & The crypto module type\-: software, hardware, or hybrid. \\
+\hline
+{\em module\-\_\-version} & The version\# of the crypto module under test. \\
+\hline
+{\em module\-\_\-description} & A brief description of the crypto module under test.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_ab2cc508cf1e3ec2dee379d401669de0f}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-set\-\_\-path\-\_\-segment@{amvp\-\_\-set\-\_\-path\-\_\-segment}}
+\index{amvp\-\_\-set\-\_\-path\-\_\-segment@{amvp\-\_\-set\-\_\-path\-\_\-segment}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-set\-\_\-path\-\_\-segment}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-set\-\_\-path\-\_\-segment (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx, }
+\item[{char $\ast$}]{path\-\_\-segment}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_ab2cc508cf1e3ec2dee379d401669de0f}
+
+
+\hyperlink{amvp_8h_ab2cc508cf1e3ec2dee379d401669de0f}{amvp\-\_\-set\-\_\-path\-\_\-segment()} specifies the U\-R\-I prefix used by the A\-M\-V\-P server. 
+
+Some A\-M\-V\-P servers use a prefix in the U\-R\-I for the path to the A\-M\-V\-P R\-E\-S\-T interface. Calling this function allows the path segment prefix to be specified. The value provided to this function is prepended to the path segment of the U\-R\-I used for the A\-M\-V\-P R\-E\-S\-T calls.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session. \\
+\hline
+{\em path\-\_\-segment} & Value to embed in the U\-R\-I path after the server name and before the A\-M\-V\-P well-\/known path.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_a52516e04dceec62a7def9443dd28271e}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-set\-\_\-server@{amvp\-\_\-set\-\_\-server}}
+\index{amvp\-\_\-set\-\_\-server@{amvp\-\_\-set\-\_\-server}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-set\-\_\-server}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-set\-\_\-server (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx, }
+\item[{char $\ast$}]{server\-\_\-name, }
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_a52516e04dceec62a7def9443dd28271e}
+
+
+\hyperlink{amvp_8h_a52516e04dceec62a7def9443dd28271e}{amvp\-\_\-set\-\_\-server()} specifies the A\-M\-V\-P server and T\-C\-P port number to use when contacting the server. 
+
+This function is used to specify the hostname or I\-P address of the A\-M\-V\-P server. The T\-C\-P port number can also be specified if the server doesn't use port 443.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session. \\
+\hline
+{\em server\-\_\-name} & Name or I\-P address of the A\-M\-V\-P server. \\
+\hline
+{\em port} & T\-C\-P port number the server listens on.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{amvp_8h_a3e2e0a8e39f1a1022dcdde62a4669a66}{\index{amvp.\-h@{amvp.\-h}!amvp\-\_\-set\-\_\-vendor\-\_\-info@{amvp\-\_\-set\-\_\-vendor\-\_\-info}}
+\index{amvp\-\_\-set\-\_\-vendor\-\_\-info@{amvp\-\_\-set\-\_\-vendor\-\_\-info}!amvp.h@{amvp.\-h}}
+\subsubsection[{amvp\-\_\-set\-\_\-vendor\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvp\-\_\-set\-\_\-vendor\-\_\-info (
+\begin{DoxyParamCaption}
+\item[{{\bf A\-M\-V\-P\-\_\-\-C\-T\-X} $\ast$}]{ctx, }
+\item[{const char $\ast$}]{vendor\-\_\-name, }
+\item[{const char $\ast$}]{vendor\-\_\-url, }
+\item[{const char $\ast$}]{contact\-\_\-name, }
+\item[{const char $\ast$}]{contact\-\_\-email}
+\end{DoxyParamCaption}
+)}}\label{amvp_8h_a3e2e0a8e39f1a1022dcdde62a4669a66}
+
+
+\hyperlink{amvp_8h_a3e2e0a8e39f1a1022dcdde62a4669a66}{amvp\-\_\-set\-\_\-vendor\-\_\-info()} specifies the vendor attributes for the test session. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & Pointer to \hyperlink{structAMVP__CTX}{A\-M\-V\-P\-\_\-\-C\-T\-X} that was previously created by calling amvp\-\_\-create\-\_\-test\-\_\-session. \\
+\hline
+{\em vendor\-\_\-name} & Name of the vendor that owns the crypto module. \\
+\hline
+{\em vendor\-\_\-url} & The Vendor's U\-R\-L. \\
+\hline
+{\em contact\-\_\-name} & Name of contact at Vendor. \\
+\hline
+{\em contact\-\_\-email} & Email of vendor contact.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}

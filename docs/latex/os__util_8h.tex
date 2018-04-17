@@ -1,0 +1,169 @@
+\hypertarget{os__util_8h}{\section{src/os\-\_\-util.h File Reference}
+\label{os__util_8h}\index{src/os\-\_\-util.\-h@{src/os\-\_\-util.\-h}}
+}
+{\ttfamily \#include \char`\"{}amvp.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}midbg.\-h\char`\"{}}\\*
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T}($\ast$ \hyperlink{os__util_8h_a1fbd5289e29cf1fae3294616eb7e2ff3}{amvpu\-\_\-setup\-\_\-callback} )(\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$)
+\begin{DoxyCompactList}\small\item\em \hyperlink{os__util_8h_a1fbd5289e29cf1fae3294616eb7e2ff3}{amvpu\-\_\-setup\-\_\-callback()} callback from \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()}. See \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()} for more information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{os__util_8h_a1787a362d1a9aced7cd119c899e36928}{amvpu\-\_\-readalloc} (int fd)
+\begin{DoxyCompactList}\small\item\em \hyperlink{os__util_8h_a1787a362d1a9aced7cd119c899e36928}{amvpu\-\_\-readalloc()} read everything from a file descriptor into newly allocated memory and return it. Caller is responsible for freeing the result. \end{DoxyCompactList}\item 
+int \hyperlink{os__util_8h_a97034d34ec0d12a61a98f9b3eefa5450}{amvpu\-\_\-rmdir\-\_\-r} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em \hyperlink{os__util_8h_a97034d34ec0d12a61a98f9b3eefa5450}{amvpu\-\_\-rmdir\-\_\-r()} remove a directory and all it's contents \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{os__util_8h_a07e5c295b833d2472d6ed0e634d340f3}{amvpu\-\_\-copyfile} (char $\ast$src, char $\ast$dest)
+\begin{DoxyCompactList}\small\item\em \hyperlink{os__util_8h_a07e5c295b833d2472d6ed0e634d340f3}{amvpu\-\_\-copyfile()} copy a file from source to dest. both source and dest should be paths to regular files. Dest will be truncated if it exists and created if it doesn't \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{os__util_8h_a9222d63cee1cd13847e8653aa25033df}{amvpu\-\_\-exec\-\_\-log} (const char $\ast$client, const char $\ast$prog, char $\ast$const argv\mbox{[}$\,$\mbox{]}, \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} $\ast$status)
+\begin{DoxyCompactList}\small\item\em \hyperlink{os__util_8h_a9222d63cee1cd13847e8653aa25033df}{amvpu\-\_\-exec\-\_\-log()} run the external text program. All the output from standard error and standard out are saved in a log which is returned. The caller is responsible for freeing that collected log. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug} (const char $\ast$client, const char $\ast$prog, char $\ast$const argv\mbox{[}$\,$\mbox{]}, \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} $\ast$status, \hyperlink{os__util_8h_a1fbd5289e29cf1fae3294616eb7e2ff3}{amvpu\-\_\-setup\-\_\-callback} callback, unsigned long filter)
+\begin{DoxyCompactList}\small\item\em \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()} Run the external test program under the debugger. All the output from standard error and standard out are saved in a log which is returned. The caller is responsible for freeing that collected log. The debugger session is controlled with the mi command interface for gdb using the midbg library included in libamvp.\-a. Before the program gets launched, 'callback' is called with a pointer to the \hyperlink{structmidbg__session}{midbg\-\_\-session} so that break points and enviroment stuff can be set up. debugging control happens through callbacks from the various breakpoint functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the public header file to be included by applications using the libamvp utilities to executing test programs both under the debugger and outside of it. 
+
+\subsection{Typedef Documentation}
+\hypertarget{os__util_8h_a1fbd5289e29cf1fae3294616eb7e2ff3}{\index{os\-\_\-util.\-h@{os\-\_\-util.\-h}!amvpu\-\_\-setup\-\_\-callback@{amvpu\-\_\-setup\-\_\-callback}}
+\index{amvpu\-\_\-setup\-\_\-callback@{amvpu\-\_\-setup\-\_\-callback}!os_util.h@{os\-\_\-util.\-h}}
+\subsubsection[{amvpu\-\_\-setup\-\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T}($\ast$ amvpu\-\_\-setup\-\_\-callback)({\bf midbg\-\_\-session} $\ast$)}}\label{os__util_8h_a1fbd5289e29cf1fae3294616eb7e2ff3}
+
+
+\hyperlink{os__util_8h_a1fbd5289e29cf1fae3294616eb7e2ff3}{amvpu\-\_\-setup\-\_\-callback()} callback from \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()}. See \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()} for more information. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{structmidbg__session}{midbg\-\_\-session}} & Pointer to the debug context \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+
+
+\subsection{Function Documentation}
+\hypertarget{os__util_8h_a07e5c295b833d2472d6ed0e634d340f3}{\index{os\-\_\-util.\-h@{os\-\_\-util.\-h}!amvpu\-\_\-copyfile@{amvpu\-\_\-copyfile}}
+\index{amvpu\-\_\-copyfile@{amvpu\-\_\-copyfile}!os_util.h@{os\-\_\-util.\-h}}
+\subsubsection[{amvpu\-\_\-copyfile}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} amvpu\-\_\-copyfile (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{src, }
+\item[{char $\ast$}]{dest}
+\end{DoxyParamCaption}
+)}}\label{os__util_8h_a07e5c295b833d2472d6ed0e634d340f3}
+
+
+\hyperlink{os__util_8h_a07e5c295b833d2472d6ed0e634d340f3}{amvpu\-\_\-copyfile()} copy a file from source to dest. both source and dest should be paths to regular files. Dest will be truncated if it exists and created if it doesn't 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & -\/ path to the source file \\
+\hline
+{\em dest} & -\/ path to the destination file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{os__util_8h_aa772b5b594b99752c27096966490e508}{\index{os\-\_\-util.\-h@{os\-\_\-util.\-h}!amvpu\-\_\-exec\-\_\-debug@{amvpu\-\_\-exec\-\_\-debug}}
+\index{amvpu\-\_\-exec\-\_\-debug@{amvpu\-\_\-exec\-\_\-debug}!os_util.h@{os\-\_\-util.\-h}}
+\subsubsection[{amvpu\-\_\-exec\-\_\-debug}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ amvpu\-\_\-exec\-\_\-debug (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{client, }
+\item[{const char $\ast$}]{prog, }
+\item[{char $\ast$const}]{argv\mbox{[}$\,$\mbox{]}, }
+\item[{{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} $\ast$}]{status, }
+\item[{{\bf amvpu\-\_\-setup\-\_\-callback}}]{callback, }
+\item[{unsigned long}]{filter}
+\end{DoxyParamCaption}
+)}}\label{os__util_8h_aa772b5b594b99752c27096966490e508}
+
+
+\hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()} Run the external test program under the debugger. All the output from standard error and standard out are saved in a log which is returned. The caller is responsible for freeing that collected log. The debugger session is controlled with the mi command interface for gdb using the midbg library included in libamvp.\-a. Before the program gets launched, 'callback' is called with a pointer to the \hyperlink{structmidbg__session}{midbg\-\_\-session} so that break points and enviroment stuff can be set up. debugging control happens through callbacks from the various breakpoint functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & -\/ name of the client under test, used to create unique temp files \\
+\hline
+{\em prog} & -\/ path to program \\
+\hline
+{\em argv} & -\/ null terminated array of arguments for the program \\
+\hline
+{\em status} & -\/ pointer to an \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} to return the result of the test \\
+\hline
+{\em callback} & -\/ call back called before program exec to setup the debugger \\
+\hline
+{\em filter} & -\/ controls what kinds of records are returned in the log. filter == 0 returns everything. See \hyperlink{midbg_8h_af9f008c82167246e8eae35b379c8ad61}{midbg\-\_\-open\-\_\-session()}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char $\ast$ (returned log) 
+\end{DoxyReturn}
+\hypertarget{os__util_8h_a9222d63cee1cd13847e8653aa25033df}{\index{os\-\_\-util.\-h@{os\-\_\-util.\-h}!amvpu\-\_\-exec\-\_\-log@{amvpu\-\_\-exec\-\_\-log}}
+\index{amvpu\-\_\-exec\-\_\-log@{amvpu\-\_\-exec\-\_\-log}!os_util.h@{os\-\_\-util.\-h}}
+\subsubsection[{amvpu\-\_\-exec\-\_\-log}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ amvpu\-\_\-exec\-\_\-log (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{client, }
+\item[{const char $\ast$}]{prog, }
+\item[{char $\ast$const}]{argv\mbox{[}$\,$\mbox{]}, }
+\item[{{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} $\ast$}]{status}
+\end{DoxyParamCaption}
+)}}\label{os__util_8h_a9222d63cee1cd13847e8653aa25033df}
+
+
+\hyperlink{os__util_8h_a9222d63cee1cd13847e8653aa25033df}{amvpu\-\_\-exec\-\_\-log()} run the external text program. All the output from standard error and standard out are saved in a log which is returned. The caller is responsible for freeing that collected log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & -\/ name of the client under test, used to create unique temp files \\
+\hline
+{\em prog} & -\/ path to program \\
+\hline
+{\em argv} & -\/ null terminated array of arguments for the program \\
+\hline
+{\em status} & -\/ pointer to an \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} to return the result of the test \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char $\ast$ (returned log) 
+\end{DoxyReturn}
+\hypertarget{os__util_8h_a1787a362d1a9aced7cd119c899e36928}{\index{os\-\_\-util.\-h@{os\-\_\-util.\-h}!amvpu\-\_\-readalloc@{amvpu\-\_\-readalloc}}
+\index{amvpu\-\_\-readalloc@{amvpu\-\_\-readalloc}!os_util.h@{os\-\_\-util.\-h}}
+\subsubsection[{amvpu\-\_\-readalloc}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ amvpu\-\_\-readalloc (
+\begin{DoxyParamCaption}
+\item[{int}]{fd}
+\end{DoxyParamCaption}
+)}}\label{os__util_8h_a1787a362d1a9aced7cd119c899e36928}
+
+
+\hyperlink{os__util_8h_a1787a362d1a9aced7cd119c899e36928}{amvpu\-\_\-readalloc()} read everything from a file descriptor into newly allocated memory and return it. Caller is responsible for freeing the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & open file descriptor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char $\ast$ 
+\end{DoxyReturn}
+\hypertarget{os__util_8h_a97034d34ec0d12a61a98f9b3eefa5450}{\index{os\-\_\-util.\-h@{os\-\_\-util.\-h}!amvpu\-\_\-rmdir\-\_\-r@{amvpu\-\_\-rmdir\-\_\-r}}
+\index{amvpu\-\_\-rmdir\-\_\-r@{amvpu\-\_\-rmdir\-\_\-r}!os_util.h@{os\-\_\-util.\-h}}
+\subsubsection[{amvpu\-\_\-rmdir\-\_\-r}]{\setlength{\rightskip}{0pt plus 5cm}int amvpu\-\_\-rmdir\-\_\-r (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path}
+\end{DoxyParamCaption}
+)}}\label{os__util_8h_a97034d34ec0d12a61a98f9b3eefa5450}
+
+
+\hyperlink{os__util_8h_a97034d34ec0d12a61a98f9b3eefa5450}{amvpu\-\_\-rmdir\-\_\-r()} remove a directory and all it's contents 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & -\/ path to the directory to remove \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}

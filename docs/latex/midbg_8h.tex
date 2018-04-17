@@ -1,0 +1,512 @@
+\hypertarget{midbg_8h}{\section{src/midbg.h File Reference}
+\label{midbg_8h}\index{src/midbg.\-h@{src/midbg.\-h}}
+}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{midbg_8h_a2758fb6c72d9269368a08815f4e148fa}{\#define {\bfseries M\-A\-X\-\_\-\-I\-N\-P\-U\-T\-\_\-\-L\-I\-N\-E}~4096}\label{midbg_8h_a2758fb6c72d9269368a08815f4e148fa}
+
+\item 
+\hypertarget{midbg_8h_a68f5569cb026c7733988c335c0194458}{\#define {\bfseries D\-B\-G\-\_\-\-D\-O\-N\-E}~\char`\"{}done\char`\"{}}\label{midbg_8h_a68f5569cb026c7733988c335c0194458}
+
+\item 
+\hypertarget{midbg_8h_a5d2850683f59ce42144541da96aa1b9e}{\#define {\bfseries D\-B\-G\-\_\-\-R\-U\-N\-N\-I\-N\-G}~\char`\"{}running\char`\"{}}\label{midbg_8h_a5d2850683f59ce42144541da96aa1b9e}
+
+\item 
+\hypertarget{midbg_8h_a3d22678f337dba86d3e62c80dec45997}{\#define {\bfseries D\-B\-G\-\_\-\-C\-O\-N\-N\-E\-C\-T\-E\-D}~\char`\"{}connected\char`\"{}}\label{midbg_8h_a3d22678f337dba86d3e62c80dec45997}
+
+\item 
+\hypertarget{midbg_8h_a004bc89ac4c6725bbf5f2291977392e0}{\#define {\bfseries D\-B\-G\-\_\-\-E\-R\-R\-O\-R}~\char`\"{}error\char`\"{}}\label{midbg_8h_a004bc89ac4c6725bbf5f2291977392e0}
+
+\item 
+\hypertarget{midbg_8h_a164d8f8fd394834068364e32f7b3ddbd}{\#define {\bfseries D\-B\-G\-\_\-\-E\-X\-I\-T}~\char`\"{}exit\char`\"{}}\label{midbg_8h_a164d8f8fd394834068364e32f7b3ddbd}
+
+\item 
+\hypertarget{midbg_8h_a08d5bc9cf59d62870ce573b47d0935c7}{\#define {\bfseries D\-B\-G\-\_\-\-S\-T\-O\-P\-P\-E\-D}~\char`\"{}stopped\char`\"{}}\label{midbg_8h_a08d5bc9cf59d62870ce573b47d0935c7}
+
+\item 
+\hypertarget{midbg_8h_aa006e2faff1183ba827a70ff3012550b}{\#define {\bfseries D\-B\-G\-\_\-\-D\-I\-S\-A\-P\-P\-E\-A\-R\-E\-D}~\char`\"{}disappeared\char`\"{}}\label{midbg_8h_aa006e2faff1183ba827a70ff3012550b}
+
+\item 
+\hypertarget{midbg_8h_a8194765d5572c3833d1d2bb5358bb357}{\#define {\bfseries D\-B\-G\-\_\-\-E\-X\-E\-C\-\_\-\-A\-S\-Y\-N\-C}~'$\ast$'}\label{midbg_8h_a8194765d5572c3833d1d2bb5358bb357}
+
+\item 
+\hypertarget{midbg_8h_a50999622eefe1cf01900d9af8b939bee}{\#define {\bfseries D\-B\-G\-\_\-\-R\-E\-P\-L\-Y}~'$^\wedge$'}\label{midbg_8h_a50999622eefe1cf01900d9af8b939bee}
+
+\item 
+\hypertarget{midbg_8h_ab35a29b8808f0a0eab05f6a982ead765}{\#define {\bfseries D\-B\-G\-\_\-\-P\-O\-S\-S\-I\-B\-L\-E\-\_\-\-P\-R\-O\-M\-P\-T}~'('}\label{midbg_8h_ab35a29b8808f0a0eab05f6a982ead765}
+
+\item 
+\hypertarget{midbg_8h_ad5606ed8c20df0685158983c820d8935}{\#define {\bfseries D\-B\-G\-\_\-\-C\-O\-M\-M\-A\-N\-D}~'-\/'}\label{midbg_8h_ad5606ed8c20df0685158983c820d8935}
+
+\item 
+\hypertarget{midbg_8h_af2d568922db965da52a1aae1a1c8bc72}{\#define {\bfseries D\-B\-G\-\_\-\-T\-O\-O\-L\-K\-I\-T}~'\#'}\label{midbg_8h_af2d568922db965da52a1aae1a1c8bc72}
+
+\item 
+\hypertarget{midbg_8h_a9615e001b781d55752b3d44f9bfd5162}{\#define {\bfseries D\-B\-G\-\_\-\-I\-N\-F\-O}~'='}\label{midbg_8h_a9615e001b781d55752b3d44f9bfd5162}
+
+\item 
+\hypertarget{midbg_8h_a59e8cda8b2952ca367198fa4d005c1ad}{\#define {\bfseries D\-B\-G\-\_\-\-E\-X\-E\-C\-\_\-\-A\-S\-Y\-N\-C\-\_\-\-F\-L\-A\-G}~0x000000000000001\-U\-L}\label{midbg_8h_a59e8cda8b2952ca367198fa4d005c1ad}
+
+\item 
+\hypertarget{midbg_8h_a1f897071c56a90f0740b807f89b30c93}{\#define {\bfseries D\-B\-G\-\_\-\-R\-E\-P\-L\-Y\-\_\-\-F\-L\-A\-G}~0x000000000000002\-U\-L}\label{midbg_8h_a1f897071c56a90f0740b807f89b30c93}
+
+\item 
+\hypertarget{midbg_8h_a5a95edf02fb7d35322316fc5c6f30739}{\#define {\bfseries D\-B\-G\-\_\-\-P\-R\-O\-M\-P\-T\-\_\-\-F\-L\-A\-G}~0x000000000000004\-U\-L}\label{midbg_8h_a5a95edf02fb7d35322316fc5c6f30739}
+
+\item 
+\hypertarget{midbg_8h_ad6351a09e127d6918bb36f822f942bd5}{\#define {\bfseries D\-B\-G\-\_\-\-I\-N\-F\-O\-\_\-\-F\-L\-A\-G}~0x000000000000008\-U\-L}\label{midbg_8h_ad6351a09e127d6918bb36f822f942bd5}
+
+\item 
+\hypertarget{midbg_8h_a6019fdfde45d7024d7bd48bbfa789e35}{\#define {\bfseries D\-B\-G\-\_\-\-C\-O\-M\-M\-A\-N\-D\-\_\-\-F\-L\-A\-G}~0x000000000000010\-U\-L}\label{midbg_8h_a6019fdfde45d7024d7bd48bbfa789e35}
+
+\item 
+\hypertarget{midbg_8h_ad8305a0524ef966a914ff1b8bc66c56a}{\#define {\bfseries D\-B\-G\-\_\-\-A\-S\-Y\-N\-C\-\_\-\-F\-L\-A\-G}~0x000000000000020\-U\-L}\label{midbg_8h_ad8305a0524ef966a914ff1b8bc66c56a}
+
+\item 
+\hypertarget{midbg_8h_a9d97298bed84ba8d80f54b85adff3baf}{\#define {\bfseries D\-B\-G\-\_\-\-A\-P\-P\-\_\-\-D\-A\-T\-A\-\_\-\-F\-L\-A\-G}~0x000000000000040\-U\-L}\label{midbg_8h_a9d97298bed84ba8d80f54b85adff3baf}
+
+\item 
+\hypertarget{midbg_8h_a308e2f32ea5e1f6e31862dafbc243bef}{\#define {\bfseries D\-B\-G\-\_\-\-T\-O\-O\-L\-K\-I\-T\-\_\-\-F\-L\-A\-G}~0x000000000000080\-U\-L}\label{midbg_8h_a308e2f32ea5e1f6e31862dafbc243bef}
+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{midbg_8h_a00c27ef1b4658699d91dc33d0b0db03c}{typedef struct \hyperlink{structmidbg__session__str}{midbg\-\_\-session\-\_\-str} {\bfseries midbg\-\_\-session}}\label{midbg_8h_a00c27ef1b4658699d91dc33d0b0db03c}
+
+\item 
+\hypertarget{midbg_8h_a667a8d081329e8bacc4c408e4f5897c4}{typedef struct \hyperlink{structmidbg__breakpoint__str}{midbg\-\_\-breakpoint\-\_\-str} {\bfseries midbg\-\_\-breakpoint}}\label{midbg_8h_a667a8d081329e8bacc4c408e4f5897c4}
+
+\item 
+typedef \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T}($\ast$ \hyperlink{midbg_8h_a1adf2f9f07b16e2cd3208b507cfc8e9c}{midbg\-\_\-callback} )(\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$sess, \hyperlink{structmidbg__breakpoint}{midbg\-\_\-breakpoint} $\ast$bkpt, const char $\ast$async, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()} Run the external test program under the debugger. All the output from standard error and standard out are saved in a log which is returned. The caller is responsible for freeing that collected log. The debugger session is controlled with the mi command interface for gdb using the midbg library included in libamvp.\-a. Before the program gets launched, 'callback' is called with a pointer to the \hyperlink{structmidbg__session}{midbg\-\_\-session} so that break points and enviroment stuff can be set up. debugging control happens through callbacks from the various breakpoint functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{midbg_8h_a6681f3ff6b29abbeefd09fc6b03e7294}{int {\bfseries midbg\-\_\-is\-\_\-opening\-\_\-bracket} (char b)}\label{midbg_8h_a6681f3ff6b29abbeefd09fc6b03e7294}
+
+\item 
+\hypertarget{midbg_8h_afc7df17ec69d1063740bd7afc3798858}{char {\bfseries midbg\-\_\-get\-\_\-closing\-\_\-bracket} (char b)}\label{midbg_8h_afc7df17ec69d1063740bd7afc3798858}
+
+\item 
+\hypertarget{midbg_8h_abe4faa71719475724345d5fe183ce2fa}{char $\ast$ {\bfseries midbg\-\_\-strip\-\_\-bracket} (const char $\ast$cp)}\label{midbg_8h_abe4faa71719475724345d5fe183ce2fa}
+
+\item 
+\hypertarget{midbg_8h_a5980a9e3ae8f319241609b6b6cea5606}{char $\ast$ {\bfseries midbg\-\_\-get\-\_\-var} (const char $\ast$reply\-\_\-string, const char $\ast$var)}\label{midbg_8h_a5980a9e3ae8f319241609b6b6cea5606}
+
+\item 
+\hypertarget{midbg_8h_a1314d03041293abb0cce968df34b5750}{char $\ast$ {\bfseries midbg\-\_\-get\-\_\-var\-\_\-value} (const char $\ast$reply\-\_\-string, const char $\ast$var)}\label{midbg_8h_a1314d03041293abb0cce968df34b5750}
+
+\item 
+\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$ \hyperlink{midbg_8h_af9f008c82167246e8eae35b379c8ad61}{midbg\-\_\-open\-\_\-session} (F\-I\-L\-E $\ast$fcommand, F\-I\-L\-E $\ast$freply, unsigned long filter)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_af9f008c82167246e8eae35b379c8ad61}{midbg\-\_\-open\-\_\-session()} Create a new debugging session. Session is freed by \hyperlink{midbg_8h_a8697668a8ed5418e31164ce039687a60}{midbg\-\_\-close\-\_\-session()}. This function is used by \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()}. Test appplications need not call it. \end{DoxyCompactList}\item 
+void \hyperlink{midbg_8h_a8697668a8ed5418e31164ce039687a60}{midbg\-\_\-close\-\_\-session} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_af9f008c82167246e8eae35b379c8ad61}{midbg\-\_\-open\-\_\-session()} Close down a debug session and free it. This function is used by \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()}. Test appplications need not call it. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_a0e1ee46acac6af7152a22e7bd990edaf}{midbg\-\_\-set\-\_\-program\-\_\-args} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, char $\ast$const argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a0e1ee46acac6af7152a22e7bd990edaf}{midbg\-\_\-set\-\_\-program\-\_\-args()} Set the args to be used by the program under test. This function is used by \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()}. Test appplications need not call it. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_a58c0ef3c4a16f9fd41a48098e65e2e78}{midbg\-\_\-log} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a58c0ef3c4a16f9fd41a48098e65e2e78}{midbg\-\_\-log()} Append a string to the log. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{midbg_8h_a919e24cf90d7880307cb994c2f3cb076}{midbg\-\_\-get\-\_\-log} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a919e24cf90d7880307cb994c2f3cb076}{midbg\-\_\-get\-\_\-log()} Return a copy of the current log \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_a769218f51f009d19aa0838e617656313}{midbg\-\_\-get\-\_\-scalar} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, const char $\ast$var, size\-\_\-t size, unsigned long $\ast$val)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a769218f51f009d19aa0838e617656313}{midbg\-\_\-get\-\_\-scalar()} Lookup a scalar variable in the debugger and return it. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_afd15a49bf5fde7adb410cce8147bdd9f}{midbg\-\_\-copy\-\_\-bytes} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, const char $\ast$src\-\_\-var, const char $\ast$target\-\_\-var, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_afd15a49bf5fde7adb410cce8147bdd9f}{midbg\-\_\-copy\-\_\-bytes()} copy from one memory location to another \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_a34370123676e8db3efc3eaaff0164596}{midbg\-\_\-get\-\_\-bytes} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, const char $\ast$var, unsigned char $\ast$buf, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a34370123676e8db3efc3eaaff0164596}{midbg\-\_\-get\-\_\-bytes()} fetch some bytes from memory or a variable \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_a8415a1291ee1cbc6616c427a8f824a04}{midbg\-\_\-put\-\_\-bytes} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, const char $\ast$var, const unsigned char $\ast$buf, size\-\_\-t size)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a34370123676e8db3efc3eaaff0164596}{midbg\-\_\-get\-\_\-bytes()} write some bytes to memory or a variable \end{DoxyCompactList}\item 
+\hypertarget{midbg_8h_a7e22010e2e7c675e07bfbc17800b89a5}{\hyperlink{structmidbg__breakpoint}{midbg\-\_\-breakpoint} $\ast$ {\bfseries midbg\-\_\-new\-\_\-breakpoint} (const char $\ast$label, int number, \hyperlink{midbg_8h_a1adf2f9f07b16e2cd3208b507cfc8e9c}{midbg\-\_\-callback} callback, void $\ast$args)}\label{midbg_8h_a7e22010e2e7c675e07bfbc17800b89a5}
+
+\item 
+\hypertarget{midbg_8h_a2840220f5cbad76d029357f091393c6d}{void {\bfseries midbg\-\_\-free\-\_\-breakpoint} (\hyperlink{structmidbg__breakpoint}{midbg\-\_\-breakpoint} $\ast$breakpoint)}\label{midbg_8h_a2840220f5cbad76d029357f091393c6d}
+
+\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_af6587a89efecae7c28aecafb9d117599}{midbg\-\_\-add\-\_\-breakpoint} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, char $\ast$command, const char $\ast$arg, const char $\ast$label, \hyperlink{midbg_8h_a1adf2f9f07b16e2cd3208b507cfc8e9c}{midbg\-\_\-callback} callback, void $\ast$args)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_af6587a89efecae7c28aecafb9d117599}{midbg\-\_\-add\-\_\-breakpoint()} Create a new breakpoint. When the breakpoint is called, callback is called with args. \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_a946ea1d52437eec89c52a6e0cb48c635}{midbg\-\_\-delete\-\_\-breakpoint} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, \hyperlink{structmidbg__breakpoint}{midbg\-\_\-breakpoint} $\ast$breakpoint)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a946ea1d52437eec89c52a6e0cb48c635}{midbg\-\_\-delete\-\_\-breakpoint()} Delete a breakpoint. \end{DoxyCompactList}\item 
+\hyperlink{structmidbg__breakpoint}{midbg\-\_\-breakpoint} $\ast$ \hyperlink{midbg_8h_a2c20193237d5764441855c203cbfab9c}{midbg\-\_\-find\-\_\-breakpoint} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, int break\-\_\-number)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a946ea1d52437eec89c52a6e0cb48c635}{midbg\-\_\-delete\-\_\-breakpoint()} return the breakpoint structure with the given number \end{DoxyCompactList}\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_adcfa653f615fc0ee296141d094f139fb}{midbg\-\_\-clear\-\_\-all\-\_\-breakpoints} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_adcfa653f615fc0ee296141d094f139fb}{midbg\-\_\-clear\-\_\-all\-\_\-breakpoints()} Delete all the existing breakpoints \end{DoxyCompactList}\item 
+\hypertarget{midbg_8h_af1115134d261a16ff9977af3fd5c524a}{\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} {\bfseries midbg\-\_\-handle\-\_\-breakpoint} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, const char $\ast$bkno\-\_\-string, const char $\ast$replybuf)}\label{midbg_8h_af1115134d261a16ff9977af3fd5c524a}
+
+\item 
+\hypertarget{midbg_8h_a6f63f89e08aab5e8269c224b3054367e}{\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} {\bfseries midbg\-\_\-run\-\_\-test} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess)}\label{midbg_8h_a6f63f89e08aab5e8269c224b3054367e}
+
+\item 
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} \hyperlink{midbg_8h_a23aa3951a6d06198a5195a8f3fa1f3da}{midbg\-\_\-synch\-\_\-step} (\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$dbg\-Sess, char $\ast$type, char $\ast$$\ast$results)
+\begin{DoxyCompactList}\small\item\em \hyperlink{midbg_8h_a23aa3951a6d06198a5195a8f3fa1f3da}{midbg\-\_\-synch\-\_\-step()} execute a synchronized stepping. If we stop outside the step operation, then we will return an error. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the public header file to be included by applications using the midbg library. 
+
+\subsection{Typedef Documentation}
+\hypertarget{midbg_8h_a1adf2f9f07b16e2cd3208b507cfc8e9c}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-callback@{midbg\-\_\-callback}}
+\index{midbg\-\_\-callback@{midbg\-\_\-callback}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T}($\ast$ midbg\-\_\-callback)({\bf midbg\-\_\-session} $\ast$sess, {\bf midbg\-\_\-breakpoint} $\ast$bkpt, const char $\ast$async, void $\ast$arg)}}\label{midbg_8h_a1adf2f9f07b16e2cd3208b507cfc8e9c}
+
+
+\hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()} Run the external test program under the debugger. All the output from standard error and standard out are saved in a log which is returned. The caller is responsible for freeing that collected log. The debugger session is controlled with the mi command interface for gdb using the midbg library included in libamvp.\-a. Before the program gets launched, 'callback' is called with a pointer to the \hyperlink{structmidbg__session}{midbg\-\_\-session} so that break points and enviroment stuff can be set up. debugging control happens through callbacks from the various breakpoint functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & -\/ name of the client under test, used to create unique temp files \\
+\hline
+{\em prog} & -\/ path to program \\
+\hline
+{\em argv} & -\/ null terminated array of arguments for the program \\
+\hline
+{\em status} & -\/ pointer to an \hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} to return the result of the test \\
+\hline
+{\em callback} & -\/ call back called before program exec to setup the debugger \\
+\hline
+{\em filter} & -\/ controls what kinds of records are returned in the log. filter == 0 returns everything. See \hyperlink{midbg_8h_af9f008c82167246e8eae35b379c8ad61}{midbg\-\_\-open\-\_\-session()}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char $\ast$ (returned log) 
+\end{DoxyReturn}
+
+
+\subsection{Function Documentation}
+\hypertarget{midbg_8h_af6587a89efecae7c28aecafb9d117599}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-add\-\_\-breakpoint@{midbg\-\_\-add\-\_\-breakpoint}}
+\index{midbg\-\_\-add\-\_\-breakpoint@{midbg\-\_\-add\-\_\-breakpoint}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-add\-\_\-breakpoint}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-add\-\_\-breakpoint (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{char $\ast$}]{command, }
+\item[{const char $\ast$}]{arg, }
+\item[{const char $\ast$}]{label, }
+\item[{{\bf midbg\-\_\-callback}}]{callback, }
+\item[{void $\ast$}]{args}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_af6587a89efecae7c28aecafb9d117599}
+
+
+\hyperlink{midbg_8h_af6587a89efecae7c28aecafb9d117599}{midbg\-\_\-add\-\_\-breakpoint()} Create a new breakpoint. When the breakpoint is called, callback is called with args. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session \\
+\hline
+{\em command} & -\/ type of breakpoint. Valid commands are\-: \char`\"{}break-\/insert\char`\"{} -\/ break at a location, arg = function or address. \char`\"{}break-\/watch\char`\"{} -\/ break on a reference, arg = variable or address. \char`\"{}catch-\/load\char`\"{}-\/ break when a shared library is loaded, arg = library. \char`\"{}catch-\/unload\char`\"{} -\/ break when a shared library is unloaded, arg = library.\\
+\hline
+{\em arg} & -\/ string argument for the break command. \\
+\hline
+{\em label} & -\/ Friendly label your breakpoint handler can use to identify this breakpoint, and to look up the breakpoint \\
+\hline
+{\em callback} & -\/ function to handle your breakpoint. It will get the dbg\-Sess, breakpoint, and args). \\
+\hline
+{\em args} & -\/ arguement passed to the breakpoint handler. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_adcfa653f615fc0ee296141d094f139fb}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-clear\-\_\-all\-\_\-breakpoints@{midbg\-\_\-clear\-\_\-all\-\_\-breakpoints}}
+\index{midbg\-\_\-clear\-\_\-all\-\_\-breakpoints@{midbg\-\_\-clear\-\_\-all\-\_\-breakpoints}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-clear\-\_\-all\-\_\-breakpoints}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-clear\-\_\-all\-\_\-breakpoints (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_adcfa653f615fc0ee296141d094f139fb}
+
+
+\hyperlink{midbg_8h_adcfa653f615fc0ee296141d094f139fb}{midbg\-\_\-clear\-\_\-all\-\_\-breakpoints()} Delete all the existing breakpoints 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a8697668a8ed5418e31164ce039687a60}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-close\-\_\-session@{midbg\-\_\-close\-\_\-session}}
+\index{midbg\-\_\-close\-\_\-session@{midbg\-\_\-close\-\_\-session}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-close\-\_\-session}]{\setlength{\rightskip}{0pt plus 5cm}void midbg\-\_\-close\-\_\-session (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a8697668a8ed5418e31164ce039687a60}
+
+
+\hyperlink{midbg_8h_af9f008c82167246e8eae35b379c8ad61}{midbg\-\_\-open\-\_\-session()} Close down a debug session and free it. This function is used by \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()}. Test appplications need not call it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ session to close now. \\
+\hline
+\end{DoxyParams}
+\hypertarget{midbg_8h_afd15a49bf5fde7adb410cce8147bdd9f}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-copy\-\_\-bytes@{midbg\-\_\-copy\-\_\-bytes}}
+\index{midbg\-\_\-copy\-\_\-bytes@{midbg\-\_\-copy\-\_\-bytes}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-copy\-\_\-bytes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-copy\-\_\-bytes (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{const char $\ast$}]{src\-\_\-var, }
+\item[{const char $\ast$}]{target\-\_\-var, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_afd15a49bf5fde7adb410cce8147bdd9f}
+
+
+\hyperlink{midbg_8h_afd15a49bf5fde7adb410cce8147bdd9f}{midbg\-\_\-copy\-\_\-bytes()} copy from one memory location to another 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session \\
+\hline
+{\em src\-\_\-var} & -\/ name of the variable or memory location to copy from. \\
+\hline
+{\em target\-\_\-var} & -\/ name of the variable or memory location to copy to. \\
+\hline
+{\em size} & -\/ size in bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a946ea1d52437eec89c52a6e0cb48c635}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-delete\-\_\-breakpoint@{midbg\-\_\-delete\-\_\-breakpoint}}
+\index{midbg\-\_\-delete\-\_\-breakpoint@{midbg\-\_\-delete\-\_\-breakpoint}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-delete\-\_\-breakpoint}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-delete\-\_\-breakpoint (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{{\bf midbg\-\_\-breakpoint} $\ast$}]{breakpoint}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a946ea1d52437eec89c52a6e0cb48c635}
+
+
+\hyperlink{midbg_8h_a946ea1d52437eec89c52a6e0cb48c635}{midbg\-\_\-delete\-\_\-breakpoint()} Delete a breakpoint. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session. \\
+\hline
+{\em breakpoint} & -\/ breakpoint to be deleted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a2c20193237d5764441855c203cbfab9c}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-find\-\_\-breakpoint@{midbg\-\_\-find\-\_\-breakpoint}}
+\index{midbg\-\_\-find\-\_\-breakpoint@{midbg\-\_\-find\-\_\-breakpoint}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-find\-\_\-breakpoint}]{\setlength{\rightskip}{0pt plus 5cm}{\bf midbg\-\_\-breakpoint}$\ast$ midbg\-\_\-find\-\_\-breakpoint (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{int}]{break\-\_\-number}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a2c20193237d5764441855c203cbfab9c}
+
+
+\hyperlink{midbg_8h_a946ea1d52437eec89c52a6e0cb48c635}{midbg\-\_\-delete\-\_\-breakpoint()} return the breakpoint structure with the given number 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session. \\
+\hline
+{\em break\-\_\-number} & -\/ breakpoint number of the required breakpoint. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a34370123676e8db3efc3eaaff0164596}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-get\-\_\-bytes@{midbg\-\_\-get\-\_\-bytes}}
+\index{midbg\-\_\-get\-\_\-bytes@{midbg\-\_\-get\-\_\-bytes}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-get\-\_\-bytes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-get\-\_\-bytes (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{const char $\ast$}]{var, }
+\item[{unsigned char $\ast$}]{buf, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a34370123676e8db3efc3eaaff0164596}
+
+
+\hyperlink{midbg_8h_a34370123676e8db3efc3eaaff0164596}{midbg\-\_\-get\-\_\-bytes()} fetch some bytes from memory or a variable 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session \\
+\hline
+{\em var} & -\/ name of the variable or memory location to copy from. \\
+\hline
+{\em buf} & -\/ buffer to accept the bytes. \\
+\hline
+{\em size} & -\/ size in bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a919e24cf90d7880307cb994c2f3cb076}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-get\-\_\-log@{midbg\-\_\-get\-\_\-log}}
+\index{midbg\-\_\-get\-\_\-log@{midbg\-\_\-get\-\_\-log}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-get\-\_\-log}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ midbg\-\_\-get\-\_\-log (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a919e24cf90d7880307cb994c2f3cb076}
+
+
+\hyperlink{midbg_8h_a919e24cf90d7880307cb994c2f3cb076}{midbg\-\_\-get\-\_\-log()} Return a copy of the current log 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char $\ast$ 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a769218f51f009d19aa0838e617656313}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-get\-\_\-scalar@{midbg\-\_\-get\-\_\-scalar}}
+\index{midbg\-\_\-get\-\_\-scalar@{midbg\-\_\-get\-\_\-scalar}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-get\-\_\-scalar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-get\-\_\-scalar (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{const char $\ast$}]{var, }
+\item[{size\-\_\-t}]{size, }
+\item[{unsigned long $\ast$}]{val}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a769218f51f009d19aa0838e617656313}
+
+
+\hyperlink{midbg_8h_a769218f51f009d19aa0838e617656313}{midbg\-\_\-get\-\_\-scalar()} Lookup a scalar variable in the debugger and return it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session \\
+\hline
+{\em var} & -\/ name of the variable \\
+\hline
+{\em size} & -\/ size in bytes of variable (must be less than sizeof(unsigned long)) \\
+\hline
+{\em val} & -\/ pointer to unsigned long to accept the value of the variable. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a58c0ef3c4a16f9fd41a48098e65e2e78}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-log@{midbg\-\_\-log}}
+\index{midbg\-\_\-log@{midbg\-\_\-log}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-log}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-log (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a58c0ef3c4a16f9fd41a48098e65e2e78}
+
+
+\hyperlink{midbg_8h_a58c0ef3c4a16f9fd41a48098e65e2e78}{midbg\-\_\-log()} Append a string to the log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session \\
+\hline
+{\em format} & -\/ printf style format... \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_af9f008c82167246e8eae35b379c8ad61}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-open\-\_\-session@{midbg\-\_\-open\-\_\-session}}
+\index{midbg\-\_\-open\-\_\-session@{midbg\-\_\-open\-\_\-session}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-open\-\_\-session}]{\setlength{\rightskip}{0pt plus 5cm}{\bf midbg\-\_\-session}$\ast$ midbg\-\_\-open\-\_\-session (
+\begin{DoxyParamCaption}
+\item[{F\-I\-L\-E $\ast$}]{fcommand, }
+\item[{F\-I\-L\-E $\ast$}]{freply, }
+\item[{unsigned long}]{filter}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_af9f008c82167246e8eae35b379c8ad61}
+
+
+\hyperlink{midbg_8h_af9f008c82167246e8eae35b379c8ad61}{midbg\-\_\-open\-\_\-session()} Create a new debugging session. Session is freed by \hyperlink{midbg_8h_a8697668a8ed5418e31164ce039687a60}{midbg\-\_\-close\-\_\-session()}. This function is used by \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()}. Test appplications need not call it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fcommand} & -\/ stdio file descriptor to the command pipe \\
+\hline
+{\em freply} & -\/ stdio file descriptor to the reply pipe \\
+\hline
+{\em filter} & -\/ controls what kinds of records returned on the reply pipe. valid values are\-: D\-B\-G\-\_\-\-E\-X\-E\-C\-\_\-\-A\-S\-Y\-N\-C\-\_\-\-F\-L\-A\-G debugger asynchronous execution event D\-B\-G\-\_\-\-R\-E\-P\-L\-Y\-\_\-\-F\-L\-A\-G debugger replies D\-B\-G\-\_\-\-P\-R\-O\-M\-P\-T\-\_\-\-F\-L\-A\-G debugger prompts D\-B\-G\-\_\-\-I\-N\-F\-O\-\_\-\-F\-L\-A\-G debugger info D\-B\-G\-\_\-\-C\-O\-M\-M\-A\-N\-D\-\_\-\-F\-L\-A\-G commands to debugger D\-B\-G\-\_\-\-A\-P\-P\-\_\-\-D\-A\-T\-A\-\_\-\-F\-L\-A\-G data from the test program. D\-B\-G\-\_\-\-T\-O\-O\-L\-K\-I\-T\-\_\-\-F\-L\-A\-G toolkit records \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structmidbg__session}{midbg\-\_\-session} $\ast$ 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a8415a1291ee1cbc6616c427a8f824a04}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-put\-\_\-bytes@{midbg\-\_\-put\-\_\-bytes}}
+\index{midbg\-\_\-put\-\_\-bytes@{midbg\-\_\-put\-\_\-bytes}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-put\-\_\-bytes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-put\-\_\-bytes (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{const char $\ast$}]{var, }
+\item[{const unsigned char $\ast$}]{buf, }
+\item[{size\-\_\-t}]{size}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a8415a1291ee1cbc6616c427a8f824a04}
+
+
+\hyperlink{midbg_8h_a34370123676e8db3efc3eaaff0164596}{midbg\-\_\-get\-\_\-bytes()} write some bytes to memory or a variable 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session \\
+\hline
+{\em var} & -\/ name of the variable or memory location to copy to. \\
+\hline
+{\em buf} & -\/ buffer with bytes to write. \\
+\hline
+{\em size} & -\/ size in bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a0e1ee46acac6af7152a22e7bd990edaf}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-set\-\_\-program\-\_\-args@{midbg\-\_\-set\-\_\-program\-\_\-args}}
+\index{midbg\-\_\-set\-\_\-program\-\_\-args@{midbg\-\_\-set\-\_\-program\-\_\-args}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-set\-\_\-program\-\_\-args}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-set\-\_\-program\-\_\-args (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{char $\ast$const}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a0e1ee46acac6af7152a22e7bd990edaf}
+
+
+\hyperlink{midbg_8h_a0e1ee46acac6af7152a22e7bd990edaf}{midbg\-\_\-set\-\_\-program\-\_\-args()} Set the args to be used by the program under test. This function is used by \hyperlink{os__util_8h_aa772b5b594b99752c27096966490e508}{amvpu\-\_\-exec\-\_\-debug()}. Test appplications need not call it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session \\
+\hline
+{\em argv} & -\/ null terminated array of arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
+\hypertarget{midbg_8h_a23aa3951a6d06198a5195a8f3fa1f3da}{\index{midbg.\-h@{midbg.\-h}!midbg\-\_\-synch\-\_\-step@{midbg\-\_\-synch\-\_\-step}}
+\index{midbg\-\_\-synch\-\_\-step@{midbg\-\_\-synch\-\_\-step}!midbg.h@{midbg.\-h}}
+\subsubsection[{midbg\-\_\-synch\-\_\-step}]{\setlength{\rightskip}{0pt plus 5cm}{\bf A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} midbg\-\_\-synch\-\_\-step (
+\begin{DoxyParamCaption}
+\item[{{\bf midbg\-\_\-session} $\ast$}]{dbg\-Sess, }
+\item[{char $\ast$}]{type, }
+\item[{char $\ast$$\ast$}]{results}
+\end{DoxyParamCaption}
+)}}\label{midbg_8h_a23aa3951a6d06198a5195a8f3fa1f3da}
+
+
+\hyperlink{midbg_8h_a23aa3951a6d06198a5195a8f3fa1f3da}{midbg\-\_\-synch\-\_\-step()} execute a synchronized stepping. If we stop outside the step operation, then we will return an error. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dbg\-Sess} & -\/ currrent debug session. \\
+\hline
+{\em type} & -\/ type of set. Valid types are\-: \char`\"{}next\char`\"{} -\/ go to the next line in the program. \char`\"{}step\char`\"{} -\/ go to the next line. If the current line is a call step into the function. \char`\"{}finish\char`\"{} -\/ go to the end of the current function. \char`\"{}next-\/instruction\char`\"{} -\/ go to the next instruction. \char`\"{}step-\/instruction\char`\"{} -\/ go to the next instruction. If the current line is a call step into the function." \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{structAMVP__RESULT}{A\-M\-V\-P\-\_\-\-R\-E\-S\-U\-L\-T} 
+\end{DoxyReturn}
